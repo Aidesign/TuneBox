@@ -32,6 +32,10 @@ var userSchema = new mongoose.Schema({
 		required: true,
 		default: 5
 	},
+	joined: {
+		type: Date,
+		required: true
+	},
 	hash: String,
 	salt: String
 });
@@ -58,6 +62,7 @@ userSchema.methods.generateJwt = function() {
 		premium: this.premium,
 		privateLimit: this.privateLimit,
 		publicLimit: this.publicLimit,
+		joined: this.joined,
 		exp: parseInt(expiry.getTime() / 1000),
 	}, process.env.JWT_SECRET);
 };
