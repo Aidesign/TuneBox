@@ -10,7 +10,6 @@ var userSchema = new mongoose.Schema({
 	},
 	name: {
 		type: String,
-		unique: true,
 		required: true
 	},
 	organization: {
@@ -36,6 +35,9 @@ var userSchema = new mongoose.Schema({
 	joined: {
 		type: Date,
 		required: true
+	},
+	tags: {
+		type: [String]
 	},
 	hash: String,
 	salt: String
