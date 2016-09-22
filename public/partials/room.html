@@ -1,0 +1,12 @@
+<div ng-controller='VideosController'> 
+	<ons-modal var="modal" ng-click="youtube.player.stopVideo(); modal.hide();">
+		<div id="player">
+			<div id="placeholder" style="width: 100%"></div>
+		</div>
+	</ons-modal>
+
+	<ons-tabbar>
+	<ons-tab page="partials/search.html" persistent no-reload active="true" icon="fa fa-search" label="Search"><ons-tab>
+		<ons-tab page="partials/history.html" persistent no-reload  icon="fa fa-history" label="History"></ons-tab>
+	</ons-tabbar>
+</div>
