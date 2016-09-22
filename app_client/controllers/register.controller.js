@@ -14,7 +14,7 @@
 			authentication.register($scope.user).success(function(res) {
 				$location.path('/');
 			}).error(function(res) {
-				$scope.error = res.message;
+				$scope.error = res;
 			});
 		}
 	}

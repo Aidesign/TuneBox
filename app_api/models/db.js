@@ -1,7 +1,7 @@
 var mongoose = require( 'mongoose' );
 
 // Change DB Uri!!
-var dbURI = 'mongodb://localhost/Tunebox';
+var dbURI = 'mongodb://localhost/TuneBox';
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', function () {

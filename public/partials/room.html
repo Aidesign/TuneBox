@@ -1,0 +1,46 @@
+<div class="row">
+
+<div class="col-md-3">
+	<!-- CREATE RECOMENDATIONS AND ADDS AREA HERE -->
+</div>
+
+<div class="col-md-6" ng-controller='VideosController'> 
+	<div ng-click="youtube.player.stopVideo();">
+		<div id="player">
+			<div id="placeholder" style="width: 100%"></div>
+		</div>
+	</div>
+
+  <div class="">
+    <form ng-submit="search(true)">
+      <input type="search" class="" placeholder="Search for videos in YouTube" ng-model="query">
+    </form>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="video in results track by $index" ng-click="modal.show(); launch(video, true)">
+          <img class="thumbnail" ng-src="{{ video.thumbnail }}">
+          <div class="title">
+            {{ video.title }}
+          </div>
+          <div class="user">
+          </div>
+          <div class="desc">
+            {{ video.description }}
+          </div>
+    </li>
+    </ul>
+  <p class="after-list" ng-show="results.length === 0">
+    <span ng-hide="loading">{{ label }}</span>
+    <span ng-show="loading"><ons-icon icon="fa fa-spinner" size="22px" spin="true"></ons-icon></span>
+  </p>
+  <p class="after-list" ng-show="results.length > 0 && nextPageToken !== ''">
+    <button ng-click="loadMoreButton.startSpin(); loadMoreButton.setDisabled(true); search(false)">Load more videos</button>
+  </p>
+
+</div>
+
+<div class="col-md-3">
+	<!-- CREATE CHAT FUNCTION HERE -->
+</div>
+
+</div>
