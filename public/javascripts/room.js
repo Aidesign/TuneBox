@@ -1,4 +1,4 @@
-var app = angular.module('TuneBox', ['ngResource', 'ngRoute', 'onsen']);
+var app = angular.module('TuneBox', ['ngResource', 'ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
