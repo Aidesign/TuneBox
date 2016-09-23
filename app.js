@@ -6,6 +6,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var uglifyJs = require("uglify-js");
+var fs = require('fs');
 
 require('./app_api/models/db');
 require('./app_api/config/passport'); 
@@ -20,6 +22,26 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server' ,'views'));
 app.set('view engine', 'jade');
+
+var appClientFiles = [
+  'app_client/app.js',
+  'app_client/controllers/home.controller.js', 
+  'app_client/controllers/register.controller.js',
+  'app_client/services/authentication.service.js',
+  'app_client/controllers/login.controller.js',
+  'app_client/controllers/navigation.controller.js'
+];
+var uglified = uglifyJs.minify(appClientFiles, {
+  compress: false
+});
+
+fs.writeFile('public/angular/tunebox.min.js', uglified.code, function(err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('Script generated and saved: tunebox.min.js');
+  }
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
