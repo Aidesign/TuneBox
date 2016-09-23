@@ -8,11 +8,20 @@ var roomSchema = new mongoose.Schema({
 		required: true
 
 	},
+	description: {
+		type:String,
+		default: "This is your room's description."
+	}, 
 	admins : {
 		type: [String],
-		required: true
+		required: true,
+		default: ["test"]
 	},
-	public: Boolean,
+	public: {
+		type: Boolean,
+		required: true,
+		default: false
+	},
 	playlist: Boolean,
 
 	userLimit: {

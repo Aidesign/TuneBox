@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="col-md-2">
+	</div>
+
+	<div class="col-md-8">
+			<h1> Create a room</h1>
+			<form>
+				<div>
+					<label>Room name:</label>
+					<input class="form-control" ng-model="room.name"></input>
+				</div>
+
+				<div>
+					<label>Room description:</label>
+					<input class="form-control" ng-model="room.description"></input>
+				</div>
+
+				<div>
+					<label>Room tags separated by comma:</label>
+					<input class="form-control" ng-model="room.tags"></input>
+				</div>
+
+				<input type="button" class="btn btn-primary" value="Create" ng-click="createRoom()"></input>
+				<p> {{errorMessage}}</p>
+			</form>
+	</div>
+
+	<div class="col-md-2">
+	</div>
+
+</div>
