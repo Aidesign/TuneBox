@@ -13,12 +13,15 @@ var roomSchema = new mongoose.Schema({
 		required: true
 	},
 	public: Boolean,
+	playlist: Boolean,
+
 	userLimit: {
 		type: Number,
 		required: true,
 		default: 10
-	}
+	}, 
 
+	nowPlayingID: Number
 
 });
 

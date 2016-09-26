@@ -18,10 +18,13 @@ module.exports.register = function(req, res) {
 	user.name = req.body.name;
 	user.email = req.body.email;
 	user.setPassword(req.body.password);
+	user.joined = Date.now();
 	user.save(function(err) {
 		var token;
 		if (err) {
-			sendJSONresponse(res, 404, err);
+			sendJSONresponse(res, 404, {
+				"message": "Email already in use"
+			});
 		} else {
 			token = user.generateJwt();
 			sendJSONresponse(res, 200, {
