@@ -12,10 +12,14 @@ var roomSchema = new mongoose.Schema({
 		type:String,
 		default: "This is your room's description."
 	}, 
-	admins : {
-		type: [String],
+	admin : {
+		type: String,
 		required: true,
 		default: ["test"]
+	},
+	tags: {
+		type: [String],
+		required: true
 	},
 	public: {
 		type: Boolean,

@@ -17,11 +17,12 @@
 
 				<div>
 					<label>Room tags separated by comma:</label>
-					<input class="form-control" ng-model="room.tags"></input>
+					<input class="form-control" ng-list="," ng-model="room.tags"></input>
 				</div>
+				<input type="checkbox" ng-model="room.public"> Public room
 
 				<input type="button" class="btn btn-primary" value="Create" ng-click="createRoom()"></input>
-				<p> {{errorMessage}}</p>
+				<p> {{errorMessage}} </p>
 			</form>
 	</div>
 

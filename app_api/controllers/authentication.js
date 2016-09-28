@@ -23,7 +23,7 @@ module.exports.register = function(req, res) {
 		var token;
 		if (err) {
 			sendJSONresponse(res, 404, {
-				"message": "Email already in use"
+				"message": err//"Email already in use"
 			});
 		} else {
 			token = user.generateJwt();
