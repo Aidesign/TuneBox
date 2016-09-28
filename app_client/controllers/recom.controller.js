@@ -10,6 +10,7 @@ var sendJSONresponse = function(res, status, content) {
 };
 
 var getUserTags = function(req, res, callback) {
+	//Get info from auth service here?
 	if (req.payload && req.payload.email) {
 		User.findOne({ email: req.payload.email }).exec(function(err, user) {
 			if (!user) {

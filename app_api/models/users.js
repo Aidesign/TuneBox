@@ -66,6 +66,7 @@ userSchema.methods.generateJwt = function() {
 		privateLimit: this.privateLimit,
 		publicLimit: this.publicLimit,
 		joined: this.joined,
+		tags: this.tags,
 		exp: parseInt(expiry.getTime() / 1000),
 	}, process.env.JWT_SECRET);
 };
