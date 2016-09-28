@@ -1,0 +1,49 @@
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+
+.hidden {
+	display: none;
+}
+
+.shown {
+	display: block;
+}
+
+.black-background {
+	background-color: #000000;
+}
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+/*.container {
+	margin: 0px !important;
+}*/
+
+.youtube-search-bar {
+	margin-bottom: 0.5em;
+}
+
+.video-container {
+	height: 500px;
+	width: 750px;
+}
+
+.search-results {
+	height: 450px;
+	width: 750px;
+	overflow-y: scroll;
+}
+
+.portfolio-item {
+    margin-bottom: 25px;
+}
+
+footer {
+    margin: 50px 0;
+}

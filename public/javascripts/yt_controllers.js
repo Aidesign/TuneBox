@@ -2,31 +2,37 @@ angular.module('TuneBox')
 
 // Controller
 
-.controller('VideosController', function ($scope, $http, $log, VideosService) {
+.controller('VideosController', function($scope, $http, $log, VideosService) {
 
-    init();
+  init();
 
-    function init() {
-      $scope.youtube = VideosService.getYoutube();
-      $scope.results = VideosService.getResults();
-      $scope.history = VideosService.getHistory();
+  function init() {
+    $scope.youtube = VideosService.getYoutube();
+    $scope.results = VideosService.getResults();
+    $scope.history = VideosService.getHistory();
+    $scope.classHidden = "hidden";
+    $scope.classShown = "shown";
+  }
+
+  $scope.launch = function(video, archive) {
+    $scope.classHidden = "shown";
+    $scope.classShown = "hidden";
+    VideosService.launchPlayer(video.id, video.title);
+    if (archive) {
+      VideosService.archiveVideo(video);
     }
+    $log.info('Launched id:' + video.id + ' and title:' + video.title);
+  };
 
-    $scope.launch = function (video, archive) {
-      VideosService.launchPlayer(video.id, video.title);
-      if (archive) {
-      	VideosService.archiveVideo(video);
-      }
-      $log.info('Launched id:' + video.id + ' and title:' + video.title);
-    };
+  $scope.nextPageToken = '';
+  $scope.label = 'You haven\'t searched for any video yet!';
+  $scope.loading = false;
 
-    $scope.nextPageToken = '';
-    $scope.label = 'You haven\'t searched for any video yet!';
-    $scope.loading = false;
-
-    $scope.search = function (isNewQuery) {
-      $scope.loading = true;
-      $http.get('https://www.googleapis.com/youtube/v3/search', {
+  $scope.search = function(isNewQuery) {
+    $scope.classHidden = "hidden";
+    $scope.classShown = "shown";
+    $scope.loading = true;
+    $http.get('https://www.googleapis.com/youtube/v3/search', {
         params: {
           key: 'AIzaSyBJmqwVRUJUXd2QZD1agSvI0B5DzYbiKuc',
           type: 'video',
@@ -37,7 +43,7 @@ angular.module('TuneBox')
           q: this.query
         }
       })
-      .success( function (data) {
+      .success(function(data) {
         if (data.items.length === 0) {
           $scope.label = 'No results were found!';
         }
@@ -45,14 +51,13 @@ angular.module('TuneBox')
         $scope.nextPageToken = data.nextPageToken;
         $log.info(data);
       })
-      .error( function () {
+      .error(function() {
         $log.info('Search error');
       })
-      .finally( function () {
+      .finally(function() {
         $scope.loadMoreButton.stopSpin();
         $scope.loadMoreButton.setDisabled(false);
         $scope.loading = false;
-      })
-      ;
-    };
+      });
+  };
 });
