@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 //var ctrlVideos = require('../controllers/videos');
 var ctrlAuth = require('../controllers/authentication');
+var roomFunctions = require('../controllers/roomFunk');
 
 // videos
 /*router.post('/videos', ctrlVideos.videosCreate);
@@ -13,5 +14,8 @@ router.delete('/videos/:videoid', ctrlVideos.videosDeleteOne);
 
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
+router.get('/rooms', roomFunctions.getPublicRooms);
+router.get('/rooms/:userid', roomFunctions.getUserRooms);
+router.post('/createRoom', roomFunctions.createRoom);
 
 module.exports = router;

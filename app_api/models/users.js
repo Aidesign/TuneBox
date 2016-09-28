@@ -10,7 +10,6 @@ var userSchema = new mongoose.Schema({
 	},
 	name: {
 		type: String,
-		unique: true,
 		required: true
 	},
 	organization: {
@@ -36,6 +35,9 @@ var userSchema = new mongoose.Schema({
 	joined: {
 		type: Date,
 		required: true
+	},
+	tags: {
+		type: [String]
 	},
 	hash: String,
 	salt: String
@@ -64,6 +66,7 @@ userSchema.methods.generateJwt = function() {
 		privateLimit: this.privateLimit,
 		publicLimit: this.publicLimit,
 		joined: this.joined,
+		tags: this.tags,
 		exp: parseInt(expiry.getTime() / 1000),
 	}, process.env.JWT_SECRET);
 };
