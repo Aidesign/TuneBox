@@ -3,6 +3,73 @@ body {
 	margin:0;
 	padding:0;
 	height:100%;
+	overflow-x: hidden;
+}
+
+.small-margin-left {
+	margin-left: 5%;
+}
+
+.fixed {
+    position: fixed;
+}
+
+/* sidebar */
+.bs-docs-sidebar {
+
+}
+
+#sidebar {
+	background-color: #e6e6e6;
+	height: 100%;
+	top: 0;
+	left: 0;
+	padding-top: 70px;
+	width: 16%;
+}
+
+#sidebar-chat {
+	background-color: #e6e6e6;
+	height: 100%;
+	top: 0;
+	right: 0;
+	padding-top: 70px;
+	width: 16%;
+}
+
+#chat-room-name {
+	text-align: center;
+}
+
+#chat-room-name hr {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	background-color: #bfbfbf;
+	border-color: #bfbfbf;
+}
+
+#chat-content {
+	height: 83%;
+	margin-left: 5%;
+	overflow-y: scroll;
+}
+
+#send-message-box {
+	width: 90%;
+	margin-left: 5%;
+	padding-left: 2%;
+	height: 50px;
+	resize: none;
+}
+
+#send-message {
+	float: right;
+	margin-right: 5%;
+	margin-top: 2%;
+}
+
+#chat-bottom {
+
 }
 
 .hidden {
@@ -30,13 +97,17 @@ body {
 }
 
 .video-container {
-	height: 500px;
+	/*height: 550px;*/
 	width: 750px;
+}
+
+.youtube-search-bar {
+	width: 100%;
 }
 
 .search-results {
 	height: 450px;
-	width: 750px;
+	width: 100%;
 	overflow-y: scroll;
 }
 
@@ -46,4 +117,19 @@ body {
 
 footer {
     margin: 50px 0;
+    text-align: center;
+}
+
+#search_video_button, #load_more_button {
+	display: inline-block;
+}
+
+#chat-column {
+	position: absolute;
+	height: 100%;
+	background-color: #e6e6e6;
+	top: 0;
+	right: 0;
+	overflow-y: hidden;
+	padding-top: 70px;
 }

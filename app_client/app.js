@@ -16,7 +16,7 @@ app.config(['$routeProvider', function($routeProvider) {
     })
     .when('/room', {
       templateUrl: 'partials/room.html',
-      //controller: 'RoomCtrl'
+      //controller: 'youtubeCtrl'
     })
     .otherwise({
       redirectTo: '/'
