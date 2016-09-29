@@ -1,5 +1,4 @@
-<!--<div ng-include="'navigationbar.html'"> </div>--> 
-<div class="row" ng-controller="homeCtrl">
+<div class="row">
 
 	<nav class="ad-column col-md-2 bs-docs-sidebar">
 		<ul class="nav nav-stacked fixed sidebar-left">
@@ -16,10 +15,31 @@
 	</nav>
 
 	<div class="cold-md-8">
-		<span>Content Here. Probably Room List</span>
+		<div class="col-md-8">
+			<h3> Your rooms </h3>
+
+			<div ng-repeat='room in adminRooms'> 
+				<p> {{room.roomName}} - {{room.description}}</p>
+				<p> {{room.tags}}</p>
+				<p> {{room.currentUsers}} / {{room.userLimit}}</p>
+				<hr>
+			</div> 
+
+			<h3> Public rooms </h3>
+
+
+			<div ng-repeat='room in publicRooms'> 
+				<p> {{room.roomName}} - {{room.description}}</p>
+				<p> {{room.tags}}</p>
+				<p> {{room.currentUsers}} / {{room.userLimit}}</p>
+				<hr>	
+			</div> 
+
+			<a href="/#/"> Home </a>
+		</div>
 	</div>
 
-	<nav class="sidebar-right col-md-2 bs-docs-sidebar">
+	<nav class="col-md-2 bs-docs-sidebar">
 		<ul class="nav nav-stacked fixed sidebar-right">
 			<li>
 				<span>Some Content Here?</span>

@@ -19,10 +19,5 @@
 			$scope.publicRooms = data;
 		});
 		//console.log(userRooms);
-		
-
-
 	}
-
-
 })();
