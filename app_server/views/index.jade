@@ -1,4 +1,32 @@
 extends layout
 
 block content
-  div(ng-view)
+	nav(class="navbar navbar-inverse navbar-fixed-top" role="navigation")
+		div.row
+			//div.col-md-2
+			div.col-md-12
+				div.navbar-header
+				button(type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1")
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a(class="navbar-brand" href="#/") Tunebox
+				div.collapse.navbar-collapse#bs-example-navbar-collapse1
+					ul.nav.navbar-nav
+						li
+							a(href="#/room") Temp Room
+						li
+							a(href="#") Placeholder
+						li
+							a(href="#") Placeholder
+					ul.nav.navbar-nav.navbar-right.very-small-padding-right
+						li
+							a(href="#register")
+								span.glyphicon.glyphicon-user
+								span  Sign Up 
+						li
+							a(href="#login")
+								span.glyphicon.glyphicon-log-in
+								span  Login
+	div(ng-view)
