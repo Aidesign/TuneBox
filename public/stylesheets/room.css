@@ -1,31 +1,6 @@
-html,
-body {
-	margin:0;
-	padding:0;
-	height:100%;
-	overflow-x: hidden;
-}
-
-.small-margin-left {
-	margin-left: 5%;
-}
-
-.fixed {
-    position: fixed;
-}
-
 /* sidebar */
 .bs-docs-sidebar {
 
-}
-
-#sidebar {
-	background-color: #e6e6e6;
-	height: 100%;
-	top: 0;
-	left: 0;
-	padding-top: 70px;
-	width: 16%;
 }
 
 #sidebar-chat {

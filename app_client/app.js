@@ -15,7 +15,7 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'loginCtrl'
     })
     .when('/room', {
-      templateUrl: 'partials/room.html',
+      templateUrl: 'partials/room.view.html',
       //controller: 'youtubeCtrl'
     })
     .when('/create-room', {
