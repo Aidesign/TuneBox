@@ -15,7 +15,7 @@ router.delete('/videos/:videoid', ctrlVideos.videosDeleteOne);
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 router.get('/rooms', roomFunctions.getPublicRooms);
-router.get('/rooms/:userid', roomFunctions.getUserRooms);
+router.get('/rooms/:userMail', roomFunctions.getUserRooms);
 router.post('/createRoom', roomFunctions.createRoom);
 
 module.exports = router;

@@ -31,7 +31,9 @@ var appClientFiles = [
   'app_client/controllers/login.controller.js',
   'app_client/controllers/navigation.controller.js',
   'app_client/controllers/roomcreation.controller.js',
+  'app_client/controllers/roomlisting.controller.js',
   'app_client/services/roomService.service.js'
+
 ];
 var uglified = uglifyJs.minify(appClientFiles, {
   compress: false

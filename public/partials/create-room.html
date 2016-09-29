@@ -19,11 +19,13 @@
 					<label>Room tags separated by comma:</label>
 					<input class="form-control" ng-list="," ng-model="room.tags"></input>
 				</div>
-				<input type="checkbox" ng-model="room.public"> Public room
+				<input class= "form-control" type="checkbox" ng-model="room.public"> Public room
 
 				<input type="button" class="btn btn-primary" value="Create" ng-click="createRoom()"></input>
 				<p> {{errorMessage}} </p>
 			</form>
+
+			<a href="/#/"> Home </a>
 	</div>
 
 	<div class="col-md-2">

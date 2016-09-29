@@ -27,6 +27,11 @@ var roomSchema = new mongoose.Schema({
 		required: true,
 		default: 10
 	},
+	currentUsers:{
+		type: Number,
+		required: true,
+		default: 0
+	},
 	tags: {
 		type: [String]
 	},

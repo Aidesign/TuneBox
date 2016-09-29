@@ -7,7 +7,31 @@ var sendJSONresponse = function(res, status, content) {
 };
 
 module.exports.getUserRooms = function(req, res) {
+	if (!req.params.userMail){
+		sendJSONresponse(res, 400, {
+			"message": "No permit."
+		});
+		return;
+	}
 
+	Room
+	.find({
+		admin: req.params.userMail
+	})
+	.exec(function(err, room){
+		if (!room){
+			sendJSONresponse(res, 404, {
+				"message": "You have no rooms"
+			});
+			return;
+		} else if (err){
+			sendJSONresponse(res, 404, {
+				"message": err
+			});
+			return;
+		}
+		sendJSONresponse(res, 200, room);
+	});
 };
 
 module.exports.getPublicRooms = function(req, res) {
@@ -23,7 +47,7 @@ module.exports.getPublicRooms = function(req, res) {
 				return;
 			} else if (err) {
 				sendJSONresponse(res, 404, err);
-				return
+				return;
 			}
 			sendJSONresponse(res, 200, room);
 		});
