@@ -31,7 +31,7 @@ var appClientFiles = [
   'app_client/controllers/login.controller.js',
   'app_client/controllers/navigation.controller.js',
   'app_client/services/youtube.service.js',
-  'app_client/controllers/youtube.controller.js'
+  'app_client/controllers/youtube.controller.js',
   'app_client/controllers/roomcreation.controller.js',
   'app_client/services/roomService.service.js'
 ];
