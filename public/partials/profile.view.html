@@ -1,0 +1,91 @@
+<div ng-include="'navigationbar.html'"></div> 
+
+<div class="col-md-10 col-md-offset-1">
+	<div>
+		<h1>Edit profile</h1>
+	</div>
+
+	<div ng-show="showError" class="alert alert-danger"><strong>Error: </strong>{{error}}!</div>
+	<div ng-show="showSuccess" class="alert alert-success">Changes saved</div>
+
+	<!-- Personal info -->
+	<div class="col-md-6">
+		<h3>Personal information 
+			<button ng-hide="editPersonalInfo" ng-click="edit('personalInfo')" type="button" class="btn btn-default btn-sm">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button> 
+		</h3>
+
+		<!-- default -->
+		<div ng-hide="editPersonalInfo">
+			<p><strong>Name:</strong> {{user.name}}</p>
+			<p><strong>Email: </strong>{{user.email}}</p>
+			<p><strong>Joined: </strong>{{user.joined | date: 'dd.MM.yyyy'}}</p>
+		</div>
+
+		<!-- editing -->
+		<div ng-show="editPersonalInfo">
+			<div class="form-group">
+				<label for="email">Name:</label>
+				<input ng-model="user.name" type="text" class="form-control" id="email">
+			</div>
+
+			<div class="form-group">
+				<label for="pwd">Email:</label>
+				<input ng-model="user.email" type="text" class="form-control" id="pwd">
+			</div>
+
+			<div class="form-group">
+				<div>
+					<button ng-click="save()" class="btn btn-default">Save</button>
+					<button ng-click="cancel()" class="btn btn-default">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Organisation info -->
+	<div class="col-md-6">
+		<h3>Organization information
+			<button ng-hide="editOrganizationInfo" ng-click="edit('organizationInfo')" type="button" class="btn btn-default btn-sm">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button> 
+		</h3>
+
+		<!-- Default -->
+		<div ng-hide="editOrganizationInfo">
+			<p><strong>Name: </strong>{{user.organization}}</p>
+			<p><strong>Homepage: </strong>{{user.homePage}}</p>
+		</div>
+
+		<!-- editing -->
+		<div ng-show="editOrganizationInfo">
+			<div class="form-group">
+				<label for="organizationName">Organization name:</label>
+				<input ng-model="user.organization" type="text" class="form-control" id="organizationName">
+			</div>
+
+			<div class="form-group">
+				<label for="">Homepage</label>
+				<input ng-model="user.homePage" type="text" class="form-control" id="pwd">
+			</div>
+
+			<div class="form-group">
+				<div>
+					<button ng-click="save()" class="btn btn-default">Save</button>
+					<button ng-click="cancel()" class="btn btn-default">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Membership info -->
+	<div class="col-md-6">
+		<h3>Membership information???</h3>
+		<div>Premium: {{user.premium}}</div>
+		<div>Private room limit: {{user.privateLimit}}</div>
+		<div>Public room limit: {{user.publicLimit}}</div>
+		<div><a href="/#/">Get premium! tai jotain jotain</a></div>
+	</div>
+
+</div>

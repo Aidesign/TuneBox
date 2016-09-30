@@ -18,6 +18,10 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'partials/room.html',
       //controller: 'RoomCtrl'
     })
+    .when('/profile/', {
+      templateUrl: 'partials/profile.view.html',
+      controller: 'profileCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
