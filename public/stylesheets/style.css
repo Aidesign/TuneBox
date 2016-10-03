@@ -4,8 +4,16 @@ body {
 	padding:0;
 	height:100%;
 	overflow-x: hidden;
+    padding-top: 2em; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
+nav {
+	margin-bottom: 0em;
+}
+
+.testBackground {
+	background-color: red;
+}
 
 .small-margin-left {
 	margin-left: 5%;
@@ -28,7 +36,7 @@ body {
 	height: 100%;
 	top: 0;
 	left: 0;
-	padding-top: 70px;
+	padding-top: 4.375em;
 	width: 16%;
 }
 
@@ -37,6 +45,6 @@ body {
 	height: 100%;
 	top: 0;
 	right: 0;
-	padding-top: 70px;
+	padding-top: 4.375em;
 	width: 16%;
 }

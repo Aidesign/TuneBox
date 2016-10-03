@@ -1,50 +1,54 @@
-<div class="row">
+<div>
+	
+	<div class="row">
 
-	<nav class="ad-column col-md-2 bs-docs-sidebar">
-		<ul class="nav nav-stacked fixed sidebar-left">
-			<li class="small-margin-left">
-				<span>Place some ads here</span>
-			</li>
-				<!--<li class="small-margin-left">
-					<span>Place some ads here</span>
-				</li>
+		<nav class="ad-column col-md-2 bs-docs-sidebar">
+			<ul class="nav nav-stacked fixed sidebar-left">
 				<li class="small-margin-left">
 					<span>Place some ads here</span>
-				</li>-->
-		</ul>
-	</nav>
+				</li>
+					<!--<li class="small-margin-left">
+						<span>Place some ads here</span>
+					</li>
+					<li class="small-margin-left">
+						<span>Place some ads here</span>
+					</li>-->
+			</ul>
+		</nav>
 
-	<div class="cold-md-8">
-		<div class="col-md-8">
-			<h3> Your rooms </h3>
+		<div class="cold-md-8">
+			<div class="row">
+				<div class="col-md-8">
+					<h3> Your rooms </h3>
 
-			<div ng-repeat='room in adminRooms'> 
-				<p> {{room.roomName}} - {{room.description}}</p>
-				<p> {{room.tags}}</p>
-				<p> {{room.currentUsers}} / {{room.userLimit}}</p>
-				<hr>
-			</div> 
+					<div ng-repeat='room in adminRooms'> 
+						<p> {{room.roomName}} - {{room.description}}</p>
+						<p> {{room.tags}}</p>
+						<p> {{room.currentUsers}} / {{room.userLimit}}</p>
+						<hr>
+					</div> 
 
-			<h3> Public rooms </h3>
+					<h3> Public rooms </h3>
 
 
-			<div ng-repeat='room in publicRooms'> 
-				<p> {{room.roomName}} - {{room.description}}</p>
-				<p> {{room.tags}}</p>
-				<p> {{room.currentUsers}} / {{room.userLimit}}</p>
-				<hr>	
-			</div> 
-
-			<a href="/#/"> Home </a>
+					<div ng-repeat='room in publicRooms'> 
+						<p> {{room.roomName}} - {{room.description}}</p>
+						<p> {{room.tags}}</p>
+						<p> {{room.currentUsers}} / {{room.userLimit}}</p>
+						<hr>	
+					</div> 
+				</div>
+			</div>
 		</div>
-	</div>
 
-	<nav class="col-md-2 bs-docs-sidebar">
-		<ul class="nav nav-stacked fixed sidebar-right">
-			<li>
-				<span>Some Content Here?</span>
-			</li>
-		</ul>
-	</nav>
+		<nav class="col-md-2 bs-docs-sidebar">
+			<ul class="nav nav-stacked fixed sidebar-right">
+				<li>
+					<span>Some Content Here?</span>
+				</li>
+			</ul>
+		</nav>
+
+	</div>
 
 </div>
