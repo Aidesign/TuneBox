@@ -26,14 +26,12 @@
 			<!-- Room Title Column -->
 
 			<div class="col-md-12">
-				<h1 class="page-header">{{room_name}}
-					<small>Placeholder</small>
-				</h1>
+				<h1 class="page-header">{{room.roomName}} </h1>
 			</div>
 
 			<!-- Video Content -->
 
-			<div class="col-md-8 video-container">
+			<div class="col-md-8 video-container" ng-controller="youtubeCtrl">
 				<!--<img class="img-responsive" src="http://placehold.it/750x500" alt="">-->
 
 				<div class="youtube-search-bar">
@@ -81,7 +79,7 @@
 			<!-- Room Description -->
 
 			<div class="col-md-4">
-				<h3>{{room_description}}</h3>
+				<h3>{{room.description}}</h3>
 				<p>{{genre}}</p>
 				<p>{{artists}}</p>
 				<h3>{{current_song}}</h3>

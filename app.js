@@ -34,7 +34,8 @@ var appClientFiles = [
   'app_client/controllers/youtube.controller.js',
   'app_client/controllers/roomcreation.controller.js',
   'app_client/controllers/roomlisting.controller.js',
-  'app_client/services/roomService.service.js'
+  'app_client/services/roomService.service.js',
+  'app_client/controllers/room.controller.js'
 
 ];
 var uglified = uglifyJs.minify(appClientFiles, {

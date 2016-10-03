@@ -26,10 +26,17 @@
 			});
 		}
 
+		var getRoom = function(_id){
+			return $http.get('api/room/'+_id).success(function(data){
+
+			});
+		}
+
 		return {
 			createRoom : createRoom,
 			getUserRooms: getUserRooms,
-			getPublicRooms: getPublicRooms
+			getPublicRooms: getPublicRooms,
+			getRoom: getRoom
 		};
 
 	}

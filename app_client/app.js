@@ -26,6 +26,10 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'partials/rooms.html',
       controller: 'roomlistingCtrl'
     })
+    .when('/room/:roomid', {
+      templateUrl: 'partials/room.view.html',
+      controller: 'roomCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
