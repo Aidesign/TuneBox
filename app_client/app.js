@@ -8,7 +8,7 @@ app.config(['$routeProvider', function($routeProvider) {
     })
     .when('/browse', {
       templateUrl: 'partials/home.view.html',
-      controller: 'browseCtrl'
+      controller: 'roomlistingCtrl'
     })
     .when('/register', {
       templateUrl: 'partials/register.view.html',

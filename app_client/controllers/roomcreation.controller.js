@@ -19,7 +19,7 @@
 			$scope.room.admin = mail;
 
 			roomService.createRoom($scope.room).success(function(res) {
-				$location.path('/');
+				$location.path('/browse');
 
 			}).error(function(res) {
 				console.log(res);
