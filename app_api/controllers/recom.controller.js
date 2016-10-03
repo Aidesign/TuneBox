@@ -51,6 +51,6 @@ var getRoomsWithTags = function(userTags) {
 module.exports.recom = function(req, res) {
 	getUserTags(req, res, function(req, res, userTags) {
 		//Do stuff with returned rooms
-		var rooms = getRoomsWithTags(userTags);
+		return getRoomsWithTags(userTags);
 	});
 };

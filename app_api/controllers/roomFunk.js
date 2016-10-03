@@ -37,15 +37,13 @@ module.exports.createRoom = function(req, res) {
 		return;
 	}
 
-	var tagsReq = req.body.tags;
-	//var tagArray = tagString.split(',');
-
 	var room = new Room();
 
 	room.roomName = req.body.name;
 	room.description = req.body.description;
 	room.admin = req.body.admin;
-	room.tags = tagsReq;
+	room.tags = req.body.tags;
+	//room.thumbnail = req.body.thumbnail;
 
 	if (req.body.public){
 		room.public = req.body.public;

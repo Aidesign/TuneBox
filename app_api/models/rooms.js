@@ -22,6 +22,11 @@ var roomSchema = new mongoose.Schema({
 		default: false
 	},
 	playlist: Boolean,
+	currentUsers: {
+		type: Number,
+		required: true,
+		default: 0
+	},
 	userLimit: {
 		type: Number,
 		required: true,
@@ -29,6 +34,9 @@ var roomSchema = new mongoose.Schema({
 	},
 	tags: {
 		type: [String]
+	},
+	thumbnail: {
+		type: String
 	},
 	nowPlayingID: Number
 });
