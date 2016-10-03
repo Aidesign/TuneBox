@@ -1,6 +1,6 @@
-<div>
+<div class="container-fluid">
 	
-	<div class="row">
+	<div class="row-fluid">
 
 		<nav class="ad-column col-md-2 bs-docs-sidebar">
 			<ul class="nav nav-stacked fixed sidebar-left">
@@ -16,26 +16,27 @@
 			</ul>
 		</nav>
 
-		<div class="cold-md-8">
-			<div class="row">
-				<div class="col-md-8">
+		<div class="col-md-8">
+			<div class="row-fluid">
+				<div class="col-md-12">
 					<h3> Your rooms </h3>
 
-					<div ng-repeat='room in adminRooms'> 
+					<div ng-repeat='room in adminRooms' class="inline-block room-details"> 
 						<p> {{room.roomName}} - {{room.description}}</p>
 						<p> {{room.tags}}</p>
 						<p> {{room.currentUsers}} / {{room.userLimit}}</p>
-						<hr>
 					</div> 
-
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class=col-md-12>
 					<h3> Public rooms </h3>
 
 
-					<div ng-repeat='room in publicRooms'> 
+					<div ng-repeat='room in publicRooms' class="inline-block room-details"> 
 						<p> {{room.roomName}} - {{room.description}}</p>
 						<p> {{room.tags}}</p>
-						<p> {{room.currentUsers}} / {{room.userLimit}}</p>
-						<hr>	
+						<p> {{room.currentUsers}} / {{room.userLimit}}</p>	
 					</div> 
 				</div>
 			</div>
