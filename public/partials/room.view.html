@@ -31,7 +31,7 @@
 
 			<!-- Video Content -->
 
-			<div class="col-md-8 video-container" ng-controller="youtubeCtrl">
+			<div class="col-md-8 video-container">
 				<!--<img class="img-responsive" src="http://placehold.it/750x500" alt="">-->
 
 				<div class="youtube-search-bar">
@@ -80,11 +80,11 @@
 
 			<div class="col-md-4">
 				<h3>{{room.description}}</h3>
-				<p>{{genre}}</p>
+				<p ng-repeat="tag in room.tags">{{tag}}</p>
 				<p>{{artists}}</p>
-				<h3>{{current_song}}</h3>
+				<h3>{{currentVideo.title}}</h3>
 				<ul>
-					<li>{{song_title}}</li>
+					<li>{{currentVideo.title}}</li>
 					<li>{{artist}}</li>
 				</ul>
 			</div>

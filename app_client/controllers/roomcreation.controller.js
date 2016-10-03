@@ -18,6 +18,7 @@
 			}]);*/
 			$scope.room.admin = mail;
 
+			console.log($scope.room.userLimit);
 			var tags = $scope.room.tags;
 			var cleanedTags = [];
 

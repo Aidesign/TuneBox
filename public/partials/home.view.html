@@ -19,7 +19,8 @@
 			<h3> Your rooms </h3>
 
 			<div ng-repeat='room in adminRooms'> 
-				<a href="/#/room/{{room._id}}"> {{room.roomName}} - {{room.description}}</a>
+				<!--<a href="/#/room/{{room._id}}"> {{room.roomName}} - {{room.description}}</a> -->
+				<a href="" ng-click="goToRoom(room._id)"> {{room.roomName}} - {{room.description}}</a>
 				<p ng-repeat='tag in room.tags'> {{tag}}</p>
 				<p> {{room.currentUsers}} / {{room.userLimit}}</p>
 				<hr>
@@ -29,8 +30,8 @@
 
 
 			<div ng-repeat='room in publicRooms'> 
-				<p> {{room.roomName}} - {{room.description}}</p>
-				<p> {{room.tags}}</p>
+				<a href="/#/room/{{room._id}}"> {{room.roomName}} - {{room.description}}</a>
+				<p ng-repeat='tag in room.tags'> {{tag}}</p>
 				<p> {{room.currentUsers}} / {{room.userLimit}}</p>
 				<hr>	
 			</div> 

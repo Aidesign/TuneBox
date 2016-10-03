@@ -51,6 +51,9 @@
                 playerVars: {
                     rel: 0,
                     showinfo: 0
+                },
+                events: {
+                    'onReady': onPlayerReady
                 }
             });
         };
@@ -65,6 +68,7 @@
         };
 
         this.launchPlayer = function(id, title) {
+            console.log("ID:"+id+" TITLE: "+title);
             youtube.player.loadVideoById(id);
             youtube.videoId = id;
             youtube.videoTitle = title;
