@@ -26,6 +26,10 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'partials/rooms.html',
       controller: 'roomlistingCtrl'
     })
+    .when('/profile/', {
+      templateUrl: 'partials/profile.view.html',
+      controller: 'profileCtrl'
+    })
     .when('/room/:roomid', {
       templateUrl: 'partials/room.view.html',
       controller: 'roomCtrl'
