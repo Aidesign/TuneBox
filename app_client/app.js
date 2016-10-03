@@ -30,6 +30,10 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'partials/profile.view.html',
       controller: 'profileCtrl'
     })
+    .when('/room/:roomid', {
+      templateUrl: 'partials/room.view.html',
+      controller: 'roomCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
