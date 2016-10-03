@@ -1,0 +1,110 @@
+/* sidebar */
+.bs-docs-sidebar {
+
+}
+
+#sidebar-chat {
+	background-color: #e6e6e6;
+	height: 100%;
+	top: 0;
+	right: 0;
+	padding-top: 70px;
+	width: 16%;
+}
+
+#chat-room-name {
+	text-align: center;
+}
+
+#chat-room-name hr {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	background-color: #bfbfbf;
+	border-color: #bfbfbf;
+}
+
+#chat-content {
+	height: 83%;
+	margin-left: 5%;
+	overflow-y: scroll;
+}
+
+#send-message-box {
+	width: 90%;
+	margin-left: 5%;
+	padding-left: 2%;
+	height: 50px;
+	resize: none;
+}
+
+#send-message {
+	float: right;
+	margin-right: 5%;
+	margin-top: 2%;
+}
+
+#chat-bottom {
+
+}
+
+.hidden {
+	display: none;
+}
+
+.shown {
+	display: block;
+}
+
+.black-background {
+	background-color: #000000;
+}
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+/*.container {
+	margin: 0px !important;
+}*/
+
+.youtube-search-bar {
+	margin-bottom: 0.5em;
+}
+
+.video-container {
+	/*height: 550px;*/
+	width: 750px;
+}
+
+.youtube-search-bar {
+	width: 100%;
+}
+
+.search-results {
+	height: 450px;
+	width: 100%;
+	overflow-y: scroll;
+}
+
+.portfolio-item {
+    margin-bottom: 25px;
+}
+
+footer {
+    margin: 50px 0;
+    text-align: center;
+}
+
+#search_video_button, #load_more_button {
+	display: inline-block;
+}
+
+#chat-column {
+	position: absolute;
+	height: 100%;
+	background-color: #e6e6e6;
+	top: 0;
+	right: 0;
+	overflow-y: hidden;
+	padding-top: 70px;
+}

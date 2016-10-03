@@ -1,5 +1,3 @@
-<div ng-include="'navigationbar.html'"></div> 
-
 <div class="col-md-10 col-md-offset-1">
 	<div>
 		<h1>Edit profile</h1>
@@ -44,6 +42,17 @@
 		</div>
 	</div>
 
+	<!-- Membership info -->
+	<div class="col-md-6">
+		<h3>Membership information???</h3>
+		<div>Premium: {{user.premium}}</div>
+		<div>Private room limit: {{user.privateLimit}}</div>
+		<div>Public room limit: {{user.publicLimit}}</div>
+		<div><a href="/#/">Linkki premium sivulle tai jotain vastaavaa?</a></div>
+	</div>
+	
+</div>
+<div class="col-md-10 col-md-offset-1">
 	<!-- Organisation info -->
 	<div class="col-md-6">
 		<h3>Organization information
@@ -78,14 +87,4 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Membership info -->
-	<div class="col-md-6">
-		<h3>Membership information???</h3>
-		<div>Premium: {{user.premium}}</div>
-		<div>Private room limit: {{user.privateLimit}}</div>
-		<div>Public room limit: {{user.publicLimit}}</div>
-		<div><a href="/#/">Get premium! tai jotain jotain</a></div>
-	</div>
-
 </div>

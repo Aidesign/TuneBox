@@ -1,20 +1,39 @@
-<h1>Register</h1>
-<p>{{error}}</p>
-<form name="registerForm">
-  	<div class="form-group">
-      	<label>Email</label>		
-      	<input class="form-control" ng-model="user.email"></input>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1>Register</h1>
+        <p>{{error}}</p>
+        <form name="registerForm">
+            <div class="form-group">
+                <label>Email</label>		
+                <input class="form-control" ng-model="user.email"></input>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="2"></input>
+
+                <div role="alert"><span class="error" ng-show="registerForm.password.$error.minlength">Too short!</span></div>
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" ng-model="user.name"></input>
+            </div>
+            <p>Optional</p>
+            <div class="form-group">
+                <label>Organization (company, band, etc...)</label>
+                <input class="form-control" ng-model="user.organization"></input>
+            </div>
+            <div class="form-group">
+                <label>Home page URL</label>
+                <input class="form-control" ng-model="user.homePage"></input>
+            </div>
+            <div class="form-group">
+                <label>Tags (separated with comma)</label>
+                <textarea class="form-control" ng-model="user.tags" ng-list=","></textarea>
+            </div>
+            <input type="button" class="btn btn-primary" value="Register" ng-click="register()"></input>
+            <a class="btn btn-primary" href="/#/">Home</a>
+        </form>
     </div>
-    <div class="form-group">
-        <label>Password</label>
-        <textarea name="password" class="form-control" ng-model="user.password" ng-minlength="2"></textarea>
-        
-        <div role="alert"><span class="error" ng-show="registerForm.password.$error.minlength">Too short!</span></div>
-    </div>
-    <div class="form-group">
-        <label>Name</label>
-        <textarea class="form-control" ng-model="user.name"></textarea>
-    </div>
- 	<input type="button" class="btn btn-primary" value="Register" ng-click="register()"></input>
- 	<a class="btn btn-primary" href="/#/">Home</a>
-</form>
+    <div class="col-md-2"></div>
+</div>

@@ -1,15 +1,21 @@
-<h1>Login</h1>
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<h1>Login</h1>
+		<form>
+			<p>{{error}}</p>
+			<div class="form-group">
+				<label>Email</label>		
+				<input class="form-control" ng-model="user.email"></input>
+			</div>
+			<div class="form-group">
+				<label>Password</label>
+				<textarea class="form-control" ng-model="user.password"></textarea>
+			</div>
+			<input type="button" class="btn btn-primary" value="Login" ng-click="login()"></input>
+			<a class="btn btn-primary" href="/#/">Home</a>
+		</form>
+	</div>
+	<div class="col-md-2"></div>
+</div>
 
-<form>
-	<p>{{error}}</p>
-  	<div class="form-group">
-      	<label>Email</label>		
-      	<input class="form-control" ng-model="user.email"></input>
-    </div>
-    <div class="form-group">
-        <label>Password</label>
-        <input type="password" class="form-control" ng-model="user.password"></input>
-    </div>
- 	<input type="button" class="btn btn-primary" value="Login" ng-click="login()"></input>
- 	<a class="btn btn-primary" href="/#/">Home</a>
-</form>
