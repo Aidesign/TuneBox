@@ -11,6 +11,23 @@ nav {
 	margin-bottom: 0em;
 }
 
+/*a:focus {
+	outline: 0;
+}*/
+
+.white-underline {
+	text-decoration: underline;
+}
+
+.white-text {
+	color: white !important;
+}
+
+.top-bar {
+	background-color: #4d1a00 !important; 
+	color: white !important;
+}
+
 .testBackground {
 	background-color: red;
 }
@@ -28,11 +45,11 @@ nav {
 }
 
 .sideColumn {
-	background-color: #e6e6e6;
+	background-color: #ffbb99;
 }
 
 .sidebar-left {
-	background-color: #e6e6e6;
+	background-color: #ffc6b3;
 	height: 100%;
 	top: 0;
 	left: 0;
@@ -41,7 +58,7 @@ nav {
 }
 
 .sidebar-right {
-	background-color: #e6e6e6;
+	background-color: #ffc6b3;
 	height: 100%;
 	top: 0;
 	right: 0;

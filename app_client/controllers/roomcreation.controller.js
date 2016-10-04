@@ -18,6 +18,36 @@
 			}]);*/
 			$scope.room.admin = mail;
 
+			console.log($scope.room.userLimit);
+			var tags = $scope.room.tags;
+			var cleanedTags = [];
+
+		
+			tags.forEach(function (string){
+				console.log(string);
+				var found = false;
+
+				if (cleanedTags.length == 0){
+					cleanedTags.push(string);
+				}
+
+				cleanedTags.forEach(function(str){
+					console.log("toka");
+					if (string === str){
+						console.log("found");
+						found = true;
+					}
+				});
+
+				if (!found){
+					cleanedTags.push(string);
+				}
+			});
+
+			console.log(cleanedTags);
+
+			$scope.room.tags = cleanedTags;
+
 			roomService.createRoom($scope.room).success(function(res) {
 				$location.path('/browse');
 

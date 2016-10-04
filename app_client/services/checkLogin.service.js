@@ -10,7 +10,8 @@
 		this.loginData = {
 			showLogin: true,
 			showRegister: true,
-			showLogout: false
+			showLogout: false,
+			showName : false
 		};
 
 		this.getAll = function() {
@@ -27,6 +28,10 @@
 
 		this.setShowLogout = function(val){
 			this.loginData.showLogout = val;
+		};
+
+		this.setShowName = function(val){
+			this.loginData.showName = val;
 		};
 
 	}

@@ -15,11 +15,12 @@
 				checkLogin.setShowLogin(false);
 				checkLogin.setShowRegister(false);
 				checkLogin.setShowLogout(true);
+				checkLogin.setShowName(true);
 				$location.path('/');
 			}).error(function(res) {
-				$scope.error = res;
+				$scope.showError = true;
+				$scope.error = res.message;
 			});
 		}
 	}
-
 })();

@@ -7,7 +7,7 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'homeCtrl'
     })
     .when('/browse', {
-      templateUrl: 'partials/home.view.html',
+      templateUrl: 'partials/browse.view.html',
       controller: 'roomlistingCtrl'
     })
     .when('/register', {
@@ -29,6 +29,14 @@ app.config(['$routeProvider', function($routeProvider) {
     .when('/rooms', {
       templateUrl: 'partials/rooms.html',
       controller: 'roomlistingCtrl'
+    })
+    .when('/profile', {
+      templateUrl: 'partials/profile.view.html',
+      controller: 'profileCtrl'
+    })
+    .when('/room/:roomid', {
+      templateUrl: 'partials/room.view.html',
+      controller: 'roomCtrl'
     })
     .otherwise({
       redirectTo: '/'

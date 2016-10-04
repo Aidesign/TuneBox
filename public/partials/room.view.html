@@ -26,9 +26,7 @@
 			<!-- Room Title Column -->
 
 			<div class="col-md-12">
-				<h1 class="page-header">{{room_name}}
-					<small>Placeholder</small>
-				</h1>
+				<h1 class="page-header">{{room.roomName}} </h1>
 			</div>
 
 			<!-- Video Content -->
@@ -81,12 +79,12 @@
 			<!-- Room Description -->
 
 			<div class="col-md-4">
-				<h3>{{room_description}}</h3>
-				<p>{{genre}}</p>
+				<h3>{{room.description}}</h3>
+				<p ng-repeat="tag in room.tags">{{tag}}</p>
 				<p>{{artists}}</p>
-				<h3>{{current_song}}</h3>
+				<h3>{{currentVideo.title}}</h3>
 				<ul>
-					<li>{{song_title}}</li>
+					<li>{{currentVideo.title}}</li>
 					<li>{{artist}}</li>
 				</ul>
 			</div>

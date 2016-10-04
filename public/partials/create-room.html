@@ -19,20 +19,18 @@
 				<label>Room tags separated by comma:</label>
 				<input class="form-control" ng-list="," ng-model="room.tags"></input>
 			</div>
-			<input type="checkbox" ng-model="room.public"> Public room
-
+			<div>
+				<label> Public room?</label> 		
+				<input type="checkbox" ng-model="room.public"> </input>
+			</div>
 			<div ng-show="room.public">
 				<label> Population limit</label>
-				<input type="number" min="5" max="400" step="5" value="5" ng-model="room.userLimit"></input>
+				<input class="form-control" type="number" min="5" max="400" step="5" value="5" ng-model="room.userLimit"></input>
 			</div>
-
-			<br>
-
+			
 			<input type="button" class="btn btn-primary" value="Create" ng-click="createRoom()"></input>
 			<p> {{errorMessage}} </p>
 		</form>
-
-		<a href="/#/"> Home </a>
 	</div>
 
 	<div class="col-md-4">
