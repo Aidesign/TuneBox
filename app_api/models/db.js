@@ -37,6 +37,5 @@ process.on('SIGTERM', function() {
  });
 });
 
-//require('./videos');
 require('./users');
 require('./rooms');

@@ -35,9 +35,6 @@ var roomSchema = new mongoose.Schema({
 	tags: {
 		type: [String]
 	},
-	thumbnail: {
-		type: String
-	},
 	nowPlayingID: Number
 });
 

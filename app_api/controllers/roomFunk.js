@@ -43,7 +43,6 @@ module.exports.createRoom = function(req, res) {
 	room.description = req.body.description;
 	room.admin = req.body.admin;
 	room.tags = req.body.tags;
-	//room.thumbnail = req.body.thumbnail;
 
 	if (req.body.public){
 		room.public = req.body.public;
