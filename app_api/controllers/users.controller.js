@@ -9,7 +9,7 @@ var sendJSONresponse = function(res, status, content) {
 module.exports.getAllUsers = function(req, res) {
 	Users.find({}, function(err, users) {
 		if(err) {
-			sendJSONresponse(res, 404, err);
+			sendJSONresponse(res, 500, err);
 		} else {
 			sendJSONresponse(res, 200, users);
 		}
@@ -30,7 +30,7 @@ module.exports.getUser = function(req, res) {
 
 module.exports.editUser = function(req, res) {
 	if (!req.body.name || !req.body.email || !req.body.homePage || !req.body.organization) {
-		sendJSONresponse(res, 406, {
+		sendJSONresponse(res, 400, {
 			message: 'All fields are required'
 		});
 		return;
@@ -39,7 +39,7 @@ module.exports.editUser = function(req, res) {
 	Users.findOne({ _id: req.params.id }, function(err, user) {
 		if (err) {
 			sendJSONresponse(res, 500, err);
-		} else {
+		} else if (user) {
 			user.name = req.body.name;
 			user.email = req.body.email;
 			user.homePage = req.body.homePage;
@@ -52,11 +52,13 @@ module.exports.editUser = function(req, res) {
 						token: token
 					});
 				} else if (err.code == 11000) {
-					sendJSONresponse(res, 406, { message: 'Invalid email' });
+					sendJSONresponse(res, 204, { message: 'Invalid email' });
 				} else {
-					sendJSONresponse(res, 406, {message: err});
+					sendJSONresponse(res, 500, {message: err});
 				}
 			});
+		} else {
+			sendJSONresponse(res, status, { message: 'No room found.' });
 		}
 	});
 }

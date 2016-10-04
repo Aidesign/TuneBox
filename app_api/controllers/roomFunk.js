@@ -114,4 +114,34 @@ module.exports.createRoom = function(req, res) {
 			});
 		}
 	});
+}
+
+module.exports.editRoom = function(req, res) {
+	if (!req.body.roomName || !req.body.description || !req.body.tags) {
+		sendJSONresponse(res, 400, { message: 'All fieds are required' });
+		return;
+	}
+
+	Room
+		.findOne({ _id: req.params.roomId })
+		.exec(function(err, room) {
+			if (err) {
+				sendJSONresponse(res, 500, { message: err });
+			} else if (!room) {
+				sendJSONresponse(res, 404, { message: 'No room found'});
+			} else {
+				room.roomName = req.body.roomName;
+				room.description = req.body.description;
+				room.tags = req.body.tags;
+				room.save(function(err) {
+					if(!err) {
+						sendJSONresponse(res, 200, room);
+					} else if (err.code == 11000) {
+						sendJSONresponse(res, 400, { message: 'Room name already in use' });
+					} else {
+						sendJSONresponse(res, 500, { message: err });
+					}
+				});
+			}
+		});
 };

@@ -18,5 +18,6 @@ router.get('/rooms', roomFunctions.getPublicRooms);
 router.get('/rooms/:userMail', roomFunctions.getUserRooms);
 router.post('/createRoom', roomFunctions.createRoom);
 router.get('/room/:roomid/', roomFunctions.getRoom);
+router.put('/room/:roomId', roomFunctions.editRoom);
 
 module.exports = router;
