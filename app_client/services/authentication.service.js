@@ -50,6 +50,22 @@
 			}
 		}
 
+		var getUserObject = function() {
+			var token = getUserInfo();
+			var user = {
+				_id: token._id,
+				name: token.name,
+				email: token.email,
+				joined: token.joined,
+				organization: token.organization,
+				homePage: token.homePage,
+				premium: token.premium,
+				privateLimit: token.privateLimit,
+				publicLimit: token.publicLimit
+			}
+			return user;
+		}
+
 		return {
 			saveToken: saveToken,
 			getToken: getToken,
@@ -57,7 +73,8 @@
 			login: login,
 			register: register,
 			isLoggedIn: isLoggedIn,
-			getUserInfo: getUserInfo
+			getUserInfo: getUserInfo,
+			getUserObject: getUserObject
 		};
 	}
 

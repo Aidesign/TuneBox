@@ -1,0 +1,158 @@
+<!-- Page Content -->
+<div>
+
+	<div class="row">
+
+		<!-- Ad Column -->
+
+		<nav class="ad-column col-md-2 bs-docs-sidebar">
+			<ul class="nav nav-stacked fixed sidebar-left">
+				<li class="small-margin-left">
+					<span>Place some ads here</span>
+				</li>
+				<!--<li class="small-margin-left">
+					<span>Place some ads here</span>
+				</li>
+				<li class="small-margin-left">
+					<span>Place some ads here</span>
+				</li>-->
+			</ul>
+		</nav>
+
+		<!-- Main Content Holder -->
+
+		<div class="col-md-8">
+
+			<!-- Room Title Column -->
+
+			<div class="col-md-12">
+				<h1 class="page-header">{{room.roomName}} </h1>
+			</div>
+
+			<!-- Video Content -->
+
+			<div class="col-md-8 video-container">
+				<!--<img class="img-responsive" src="http://placehold.it/750x500" alt="">-->
+
+				<div class="youtube-search-bar">
+					<form ng-submit="search(true)">
+						<input type="search" class="form-control" placeholder="Search for videos in YouTube" ng-model="query">
+					</form>
+				</div>
+
+				<div ng-click="youtube.player.stopVideo();" ng-class="classHidden">
+					<div id="player">
+						<div id="placeholder" style="width: 100%; height: 450px"></div>
+					</div>
+				</div>
+
+				<div ng-class="classShown">
+
+					<ul class="list-group search-results">
+						<li class="list-group-item" ng-repeat="video in results track by $index" ng-click="launch(video, true)">
+							<img class="thumbnail" ng-src="{{ video.thumbnail }}">
+							<div class="title">
+								{{ video.title }}
+							</div>
+							<div class="user">
+							</div>
+							<div class="desc">
+								{{ video.description }}
+							</div>
+						</li>
+					</ul>
+					<p class="after-list" ng-show="results.length === 0">
+						<!--<span ng-hide="loading">{{ label }}</span>-->
+						<span ng-show="loading"><ons-icon icon="fa fa-spinner" size="22px" spin="true"></ons-icon></span>
+					</p>
+					<p id="load_more_button" class="after-list" ng-show="results.length > 0 && nextPageToken !== ''">
+						<button ng-click="loadMoreButton.startSpin(); loadMoreButton.setDisabled(true); search(false)">Load more videos</button>
+					</p>
+
+				</div>
+
+				<button ng-show="video_button" id="video_button" ng-click="show_video()">Show Video</button>
+				<button ng-show="search_button" id="search_button" ng-click="show_search()">Show Search</button>
+
+			</div>
+
+			<!-- Room Description -->
+
+			<div class="col-md-4">
+				<h3>{{room.description}}</h3>
+				<p ng-repeat="tag in room.tags">{{tag}}</p>
+				<p>{{artists}}</p>
+				<h3>{{currentVideo.title}}</h3>
+				<ul>
+					<li>{{currentVideo.title}}</li>
+					<li>{{artist}}</li>
+				</ul>
+			</div>
+
+			<!-- Room Recommendations -->
+
+			<div class="col-lg-12">
+				<h3 class="page-header">{{room_recommendations}}</h3>
+			</div>
+
+			<div class="col-sm-3 col-xs-6">
+				<a href="#">
+					<img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+				</a>
+			</div>
+
+			<div class="col-sm-3 col-xs-6">
+				<a href="#">
+					<img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+				</a>
+			</div>
+
+			<div class="col-sm-3 col-xs-6">
+				<a href="#">
+					<img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+				</a>
+			</div>
+
+			<div class="col-sm-3 col-xs-6">
+				<a href="#">
+					<img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+				</a>
+			</div>
+
+		</div>
+
+		<!-- Chat Column -->
+
+		<nav class="chat-column col-md-2 bs-docs-sidebar">
+			<ul id="sidebar-chat" class="nav nav-stacked fixed">
+				<li id="chat-room-name">
+					<span>Room Owner/Name</span>
+					<hr>
+				</li>
+				<li id="chat-content">
+					<span>Chat Comes Here</span>
+				</li>
+				<li id="chat-bottom">
+					<textarea class="form-control" id="send-message-box" placeholder="Send a message" name="chat-text" rows="2"></textarea>
+					<button id="send-message">Chat</button>
+				</li>
+			</ul>
+		</nav>
+
+	</div>
+	<!-- /.row -->
+
+	<hr>
+
+	<!-- Footer -->
+	<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; TuneBox 2016</p>
+			</div>
+		</div>
+		<!-- /.row -->
+	</footer>
+
+</div>
+<!-- /.container -->

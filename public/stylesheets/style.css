@@ -1,0 +1,42 @@
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+	overflow-x: hidden;
+}
+
+
+.small-margin-left {
+	margin-left: 5%;
+}
+
+.very-small-padding-right {
+	padding-right: 1%;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.sideColumn {
+	background-color: #e6e6e6;
+}
+
+.sidebar-left {
+	background-color: #e6e6e6;
+	height: 100%;
+	top: 0;
+	left: 0;
+	padding-top: 70px;
+	width: 16%;
+}
+
+.sidebar-right {
+	background-color: #e6e6e6;
+	height: 100%;
+	top: 0;
+	right: 0;
+	padding-top: 70px;
+	width: 16%;
+}

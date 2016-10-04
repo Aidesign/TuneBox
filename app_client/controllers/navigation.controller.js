@@ -3,9 +3,9 @@
 		.module('TuneBox')
 		.controller('navigationCtrl', navigationCtrl);
 
-	navigationCtrl.$inject = ['$scope', 'authentication'];
+	navigationCtrl.$inject = ['$scope', 'authentication', '$location'];
 
-	function navigationCtrl($scope, authentication) {
+	function navigationCtrl($scope, authentication, $location) {
 		if (info = authentication.getUserInfo()) {
 			$scope.showLogin = false;
 			$scope.test = 'Current user: ' + info.email;
@@ -17,6 +17,7 @@
 			authentication.logout();
 			$scope.test = 'logged out!';
 			$scope.showLogin = true;
+			$location.path('/');
 		}
 	}
 })();

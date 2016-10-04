@@ -26,12 +26,19 @@
 				</div>
 
 				<div>
-					<input type="checkbox" ng-model="room.public"> Public room</input>
+					<label> Public room?</label> 		
+					<input class= "form-control" type="checkbox" ng-model="room.public"> </input>
+				</div>
+				<div ng-show="room.public">
+					<label> Population limit</label>
+					<input class="form-control" type="number" min="5" max="400" step="5" value="5" ng-model="room.userLimit"></input>
 				</div>
 
 				<input type="button" class="btn btn-primary" value="Create" ng-click="createRoom()"></input>
 				<p> {{errorMessage}} </p>
 			</form>
+
+			<a href="/#/"> Home </a>
 	</div>
 
 	<div class="col-md-2">

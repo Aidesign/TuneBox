@@ -7,7 +7,31 @@ var sendJSONresponse = function(res, status, content) {
 };
 
 module.exports.getUserRooms = function(req, res) {
+	if (!req.params.userMail) {
+		sendJSONresponse(res, 400, {
+			"message": "No permit."
+		});
+		return;
+	}
 
+	Room
+		.find({
+			admin: req.params.userMail
+		})
+		.exec(function(err, room) {
+			if (!room) {
+				sendJSONresponse(res, 404, {
+					"message": "You have no rooms"
+				});
+				return;
+			} else if (err) {
+				sendJSONresponse(res, 404, {
+					"message": err
+				});
+				return;
+			}
+			sendJSONresponse(res, 200, room);
+		});
 };
 
 module.exports.getPublicRooms = function(req, res) {
@@ -23,7 +47,33 @@ module.exports.getPublicRooms = function(req, res) {
 				return;
 			} else if (err) {
 				sendJSONresponse(res, 404, err);
-				return
+				return;
+			}
+			sendJSONresponse(res, 200, room);
+		});
+};
+
+module.exports.getRoom = function(req, res) {
+	if (!req.params.roomid) {
+		sendJSONresponse(res, 400, {
+			"message": "No id"
+		});
+		return;
+	}
+
+	Room
+		.findOne({
+			_id: req.params.roomid
+		})
+		.exec(function(err, room) {
+			if (!room) {
+				sendJSONresponse(res, 404, {
+					"message": "Room not found"
+				});
+				return;
+			} else if (err) {
+				sendJSONresponse(res, 404, err);
+				return;
 			}
 			sendJSONresponse(res, 200, room);
 		});
@@ -44,7 +94,11 @@ module.exports.createRoom = function(req, res) {
 	room.admin = req.body.admin;
 	room.tags = req.body.tags;
 
-	if (req.body.public){
+	if (req.body.userLimit){
+		room.userLimit = req.body.userLimit;
+	}
+	
+	if (req.body.public) {
 		room.public = req.body.public;
 	} else {
 		room.public = false;
