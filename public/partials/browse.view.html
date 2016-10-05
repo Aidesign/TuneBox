@@ -27,7 +27,8 @@
 
 					<div ng-show="yourRoom" ng-repeat='room in adminRooms' class="inline-block room-details"> 
 						<!--<a href="/#/room/{{room._id}}"> {{room.roomName}} - {{room.description}}</a> -->
-						<img src="images/thumbnail.jpg" class="room_thumbnail">
+						<!-- <img src="images/thumbnail.jpg" class="room_thumbnail"> -->
+						<img ng-src="data:image/png;base64, {{ room.thumbnail }}" class="room_thumbnail">
 						<br>
 						<a class="room-name-link" href ng-click="goToRoom(room._id)"> {{room.description}}</a>
 						<br>
