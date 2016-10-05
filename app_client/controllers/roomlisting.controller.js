@@ -6,22 +6,43 @@
 	roomlistingCtrl.$inject = ['$scope', 'authentication', '$location', 'roomService', '$window'];
 
 	function roomlistingCtrl($scope, authentication, $location, roomService, $window) {
+		$scope.publicRoom = true;
+		$scope.yourRoom = false;
+		$scope.publicActive = "room-type-selection-active";
+		$scope.yourActive = "";
+
 		if (!authentication.isLoggedIn()) {
 			$location.path('/');
 		}
 		var userMail = authentication.getUserInfo().email;
-		roomService.getUserRooms(userMail).success(function (data){
+		roomService.getUserRooms(userMail).success(function(data) {
 			console.log(data);
 			$scope.adminRooms = data;
 		});
 
-		$scope.goToRoom = function(_id){
+		$scope.goToRoom = function(_id) {
 			console.log('Tääl');
-			$location.path("/room/"+_id);
-			$window.location.reload();
+			$location.path("/room/" + _id);
+			setTimeout(function() {
+				$window.location.reload();
+			}, 100);
 		}
 
-		roomService.getPublicRooms().success(function (data){
+		$scope.showPublicRooms = function() {
+			$scope.publicRoom = true;
+			$scope.yourRoom = false;
+			$scope.publicActive = "room-type-selection-active";
+			$scope.yourActive = "";
+		}
+
+		$scope.showYourRooms = function() {
+			$scope.publicRoom = false;
+			$scope.yourRoom = true;
+			$scope.publicActive = "";
+			$scope.yourActive = "room-type-selection-active";
+		}
+
+		roomService.getPublicRooms().success(function(data) {
 			$scope.publicRooms = data;
 		});
 		//console.log(userRooms);

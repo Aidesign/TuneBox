@@ -1,22 +1,23 @@
 (function() {
 	angular
-		.module('TuneBox')
-		.controller('navigationCtrl', navigationCtrl);
+	.module('TuneBox')
+	.controller('navigationCtrl', navigationCtrl);
 
-	navigationCtrl.$inject = ['$scope', 'authentication', '$location'];
+	navigationCtrl.$inject = ['$scope', 'authentication', 'checkLogin'];
 
-	function navigationCtrl($scope, authentication, $location) {
-		if (info = authentication.getUserInfo()) {
-			$scope.showLogin = false;
-			$scope.test = 'Current user: ' + info.email;
+	function navigationCtrl($scope, authentication, checkLogin) {
+
+		if(!authentication.isLoggedIn()){
+			$scope.loginData = checkLogin.getAll();
 		} else {
-			$scope.showLogin = true;
+			$scope.loginData = checkLogin.getAll();
+			checkLogin.showLoginUI();
 		}
 
-		$scope.logout = function() {
+		$scope.logout_function = function(){
+			console.log("logout function");
 			authentication.logout();
-			$scope.test = 'logged out!';
-			$scope.showLogin = true;
+			checkLogin.showLogoutUI();
 			$location.path('/');
 		}
 	}
