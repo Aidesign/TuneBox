@@ -1,48 +1,49 @@
 <div class="row">
-	<div class="col-md-2">
+	<div class="col-md-4">
 	</div>
 
-	<div class="col-md-8">
-			<h1> Create a room</h1>
-			<form>
-				<div>
-					<label>Room name:</label>
-					<input class="form-control" ng-model="room.name"></input>
-				</div>
+	<div class="col-md-4">
+		<h1> Create a room</h1>
+		<form>
+			<div>
+				<label>Room name:</label>
+				<input class="form-control" ng-model="room.name"></input>
+			</div>
 
-				<div>
-					<label>Room description:</label>
-					<input class="form-control" ng-model="room.description"></input>
-				</div>
+			<div>
+				<label>Room description:</label>
+				<input class="form-control" ng-model="room.description"></input>
+			</div>
 
-				<div>
-					<label>Room tags separated by comma:</label>
-					<input class="form-control" ng-list="," ng-model="room.tags"></input>
-				</div>
-<!--
-				<div>
-					<label>Room thumbnail:</label>
-					<input type="file" accept="image/*" ng-model="room.thumbnail" id="roomThumb"></input>
-				</div>
--->
+			<div>
+				<label>Room tags separated by comma:</label>
+				<input class="form-control" ng-list="," ng-model="room.tags"></input>
+			</div>
 
-				<div>
-					<label> Public room?</label> 		
-					<input class= "form-control" type="checkbox" ng-model="room.public"> </input>
-				</div>
-				<div ng-show="room.public">
-					<label> Population limit</label>
-					<input class="form-control" type="number" min="5" max="400" step="5" value="5" ng-model="room.userLimit"></input>
-				</div>
+			<!--
+			<div>
+				<label>Room thumbnail:</label>
+				<input type="file" accept="image/*" ng-model="room.thumbnail" id="roomThumb"></input>
+			</div>
+			-->
 
-				<input type="button" class="btn btn-primary" value="Create" ng-click="createRoom()"></input>
-				<p> {{errorMessage}} </p>
-			</form>
+			<div>
+				<label> Public room?</label> 		
+				<input type="checkbox" ng-model="room.public"> </input>
+			</div>
 
-			<a href="/#/"> Home </a>
+			<div ng-show="room.public">
+				<label> Population limit</label>
+				<input class="form-control" type="number" min="5" max="400" step="5" value="5" ng-model="room.userLimit"></input>
+			</div>
+			
+			<input type="button" id="create-room-button" class="btn btn-primary button-styling" value="Create" ng-click="createRoom()"></input>
+			<p> {{errorMessage}} </p>
+			
+		</form>
 	</div>
 
-	<div class="col-md-2">
+	<div class="col-md-4">
 	</div>
 
 </div>

@@ -5,7 +5,7 @@ var videoSchema = new mongoose.Schema({
 		type:String,
 		required: true
 	},
-	videoid:{
+	id:{
 		type: String,
 		required: true
 	}
@@ -60,7 +60,7 @@ var roomSchema = new mongoose.Schema({
 		required: true,
 		default: {
 			title: 'BLASPHEMY- "War Command"',
-			videoid: 'JGbvN25xs1w'
+			id: 'JGbvN25xs1w'
 		}
 	}
 });

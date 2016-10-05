@@ -6,11 +6,18 @@
 	profileCtrl.$inject = ['$scope', 'authentication', '$location', 'profileService', '$timeout'];
 
 	function profileCtrl($scope, authentication, $location, profileService, $timeout) {
-		if (!authentication.isLoggedIn()) {
-			$location.path('/');
-		}
+		if (!authentication.isLoggedIn()) $location.path('/');
 
-		$scope.user = authentication.getUserObject()
+		$scope.user = authentication.getUserObject();
+		$scope.original = angular.copy(authentication.getUserObject());
+
+		$scope.$watch('user', function(){
+			if (!angular.equals($scope.original, $scope.user)) {
+				$scope.edited = true;
+			} else {
+				$scope.edited = false;
+			}
+		}, true);
 
 		// scope functions
 		$scope.edit = function(form) {
@@ -32,9 +39,9 @@
 				$scope.showSuccess = true;
 				hideAndResetForms();
 				$timeout(function() { $scope.showSuccess= false; }, 4000);
-			}).error(function(data) {
+			}).error(function(err) {
 				$scope.showError = true;
-				$scope.error = data.message;
+				$scope.error = err.message;
 			});
 		}
 
@@ -42,12 +49,19 @@
 			hideAndResetForms();
 		}
 
+		$scope.hideMessages = function() {
+			$scope.showError = false;
+			$scope.showSuccess = false;
+		}
+
 		// other functions
 		var hideAndResetForms = function() {
 			$scope.showError = false;
 			$scope.editPersonalInfo = false;
 			$scope.editOrganizationInfo = false;
+			$scope.edited = false;
 			$scope.user = authentication.getUserObject();
+			$scope.original = angular.copy(authentication.getUserObject());
 		}	
 	}
 })();

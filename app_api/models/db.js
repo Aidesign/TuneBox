@@ -39,3 +39,4 @@ process.on('SIGTERM', function() {
 
 require('./users');
 require('./rooms');
+require('./messages');
