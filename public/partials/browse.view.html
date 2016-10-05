@@ -42,7 +42,7 @@
 					<div ng-show="publicRoom" ng-repeat='room in publicRooms' class="inline-block room-details">
 						<img src="images/thumbnail_2.jpg" class="room_thumbnail"> 
 						<br>
-						<a class="room-name-link" href="/#/room/{{room._id}}"> {{room.description}}</a>
+						<a class="room-name-link" href ng-click="goToRoom(room._id)"> {{room.description}}</a>
 						<br>
 						<span class="room-tag-text" ng-repeat='tag in room.tags'> {{tag}}</span>
 						<br>

@@ -10,12 +10,12 @@ module.exports = function(io) {
 		
 		socket.on('msg', function(message){
 			console.log('message:'+message);
+			io.emit('msg', message);
+		});
+
+		socket.on('changeVideo', function(message){
+			io.emit('changeVideo', message);
 		});
 	});
-
-
-
-
-	console.log("Täällä");
 
 };

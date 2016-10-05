@@ -88,6 +88,7 @@
                 author: data.items[i].snippet.channelTitle
             });
           }
+          results.reverse();
           return results;
         }
 

@@ -19,8 +19,10 @@ router.get('/rooms', roomFunctions.getPublicRooms);
 router.get('/rooms/:userMail', roomFunctions.getUserRooms);
 router.post('/createRoom', roomFunctions.createRoom);
 router.get('/room/:roomid/', roomFunctions.getRoom);
+router.put('/updateVideo/:roomid/', roomFunctions.updateVideo);
 
 // Message
 router.post('/saveMessage', messageControls.saveMessage);
+router.get('/getMessages/:roomid', messageControls.getMessages);
 
 module.exports = router;

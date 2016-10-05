@@ -4,7 +4,8 @@
 		.controller("roomCtrl", roomCtrl);
 
 	roomCtrl.$inject = ['$scope', 'authentication', '$location', '$routeParams', 'roomService',
-		'$http', '$log', 'youtubeService', '$window'];
+		'$http', '$log', 'youtubeService', '$window'
+	];
 
 	function roomCtrl($scope, authentication, $location, $routeParams, roomService, $http, $log, youtubeService, $window) {
 
@@ -12,10 +13,25 @@
 			$location.path('/');
 		}
 
+		var sukka = io('http://localhost:3000/');
+
+		sukka.on('msg', function(msg) {
+			if (msg === $routeParams.roomid) {
+				getMessages();
+			}
+		});
+
+		sukka.on('changeVideo', function(msg) {
+			if (msg === $routeParams.roomid) {
+				changePlaying();
+			}
+		});
+
 		init();
 
+
+
 		$window.onPlayerReady = function() {
-			var sukka = io('http://localhost:3000/');
 			console.log($routeParams.roomid);
 			var vRoom;
 			roomService.getRoom($routeParams.roomid).success(function(data) {
@@ -23,7 +39,9 @@
 				vRoom = data;
 				$scope.room = vRoom;
 				console.log($scope.room.roomName);
-				$scope.launch(vRoom.currentVideo);
+				launchVideo(vRoom.currentVideo, true);
+				getMessages();
+
 			});
 
 		};
@@ -54,6 +72,38 @@
 
 		}
 
+		function getMessages() {
+			roomService.getMessages($routeParams.roomid).success(function(data) {
+				$scope.messages = data;
+			});
+		}
+
+		function changeDBVideo(video){
+			roomService.changeVideo($routeParams.roomid, video).success(function(data){
+				sukka.emit('changeVideo', $routeParams.roomid);
+			});
+		}
+
+		function changePlaying(){
+			roomService.getRoom($routeParams.roomid).success(function(data) {
+				console.log(data);
+				vRoom = data;
+				launchVideo(vRoom.currentVideo, true);
+			});
+		}
+
+		function launchVideo(video, archive){
+			show_search_button();
+			$scope.classHidden = "shown";
+			$scope.classShown = "hidden";
+			youtubeService.launchPlayer(video.id, video.title);
+			if (archive) {
+				youtubeService.archiveVideo(video);
+			}
+			$scope.currentVideo = video;
+			$log.info('Launched id:' + video.id + ' and title:' + video.title);
+		}
+
 		$scope.launch = function(video, archive) {
 			console.log(video);
 			show_search_button();
@@ -64,6 +114,7 @@
 				youtubeService.archiveVideo(video);
 			}
 			$scope.currentVideo = video;
+			changeDBVideo(video);
 			$log.info('Launched id:' + video.id + ' and title:' + video.title);
 		};
 
@@ -129,18 +180,22 @@
 			$scope.video_button = false;
 		}
 
-		$scope.sendMessage = function(){
-			if ($scope.message.message == null){
+		$scope.sendMessage = function() {
+			if ($scope.message.message == null) {
 				console.log("No message");
 			} else {
 				//console.log($scope.message.message);
 				$scope.message.sender = authentication.getUserObject().name;
 				$scope.message.room = $routeParams.roomid;
 				//console.log($scope.message);
-				roomService.saveMessage().
-				$scope.message.message = null;	
+				roomService.saveMessage($scope.message).success(function(data) {
+					console.log(data);
+					$scope.message.message = null;
+
+					sukka.emit('msg', $routeParams.roomid);
+				});
 			}
-			
+
 		}
 
 	}
