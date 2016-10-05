@@ -45,6 +45,9 @@
 	float: right;
 	margin-right: 5%;
 	margin-top: 2%;
+	color: #fff;
+	width: 4em;
+	height: 2em;
 }
 
 #chat-bottom {
@@ -109,3 +112,27 @@ footer {
 	padding-top: 4.375em;
 }
 
+#room-description-text {
+	display: inline-block;
+	font-size: 1.5em;
+	margin-bottom: 1em;
+}
+
+#video_button {
+	color: #fff;
+	float: right;
+	width: 8em !important;
+	height: 2em !important;
+}
+
+#search_button {
+	color: #fff;
+	float: right;
+	width: 8em !important;
+	height: 2em !important;
+}
+
+#current_video_title {
+	display: inline-block;
+	font-size: 1.5em;
+}

@@ -45,6 +45,10 @@ nav {
 	padding-right: 1%;
 }
 
+.tiny-margin-right {
+	margin-right: 2%;
+}
+
 .fixed {
     position: fixed;
 }

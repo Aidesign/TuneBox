@@ -12,10 +12,7 @@
 
 		$scope.register = function() {
 			authentication.register($scope.user).success(function(res) {
-				checkLogin.setShowLogin(false);
-				checkLogin.setShowRegister(false);
-				checkLogin.setShowLogout(true);
-				checkLogin.setShowName(true);
+				checkLogin.showLoginUI();
 				$location.path('/');
 			}).error(function(res) {
 				$scope.showError = true;

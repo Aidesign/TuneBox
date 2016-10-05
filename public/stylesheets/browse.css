@@ -1,5 +1,9 @@
 .room-details {
+	white-space: nowrap;
+	overflow: hidden;
 	margin-right: 2em;
+	width: 16.8em;
+	text-overflow: ellipsis;
 }
 
 .image-thumbnail {

@@ -14,11 +14,9 @@ block content
 				a(class="navbar-brand white-text" href="#/") Tunebox
 				div.collapse.navbar-collapse#bs-example-navbar-collapse1
 					ul.nav.navbar-nav
-						li
-							a(href="#/room" class="white-text") Temp Room
-						li
+						li(ng-show="loginData.showBrowse")
 							a(href="#/browse" class="white-text") Browse
-						li
+						li(ng-show="loginData.showCreateRoom")
 							a(href="#/create-room" class="white-text") Create Room
 					ul.nav.navbar-nav.navbar-right.very-small-padding-right
 						li(ng-show="loginData.showRegister")
