@@ -32,6 +32,12 @@
 			});
 		}
 
+		var saveMessage = function(message){
+			return $http.post('api/saveMessage', message).success(function(data){
+				console.log(data);
+			});
+		}
+
 		return {
 			createRoom : createRoom,
 			getUserRooms: getUserRooms,

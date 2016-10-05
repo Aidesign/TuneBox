@@ -126,15 +126,15 @@
 		<nav class="chat-column col-md-2 bs-docs-sidebar">
 			<ul id="sidebar-chat" class="nav nav-stacked fixed">
 				<li id="chat-room-name">
-					<span>Room Owner/Name</span>
+					<span>{{room.admin}}</span>
 					<hr>
 				</li>
 				<li id="chat-content">
 					<span>Chat Comes Here</span>
 				</li>
 				<li id="chat-bottom">
-					<textarea class="form-control" id="send-message-box" placeholder="Send a message" name="chat-text" rows="2"></textarea>
-					<button id="send-message">Chat</button>
+					<textarea class="form-control" id="send-message-box" placeholder="Send a message" name="chat-text" rows="2" ng-model="message.message"></textarea>
+					<button id="send-message()" ng-click="sendMessage()">Chat</button>
 				</li>
 			</ul>
 		</nav>
