@@ -3,8 +3,12 @@ var app = angular.module('TuneBox', ['ngResource', 'ngRoute']);
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/home.view.html',
+      templateUrl: 'partials/index.view.html',
       controller: 'homeCtrl'
+    })
+    .when('/browse', {
+      templateUrl: 'partials/browse.view.html',
+      controller: 'roomlistingCtrl'
     })
     .when('/register', {
       templateUrl: 'partials/register.view.html',
@@ -26,7 +30,7 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'partials/rooms.html',
       controller: 'roomlistingCtrl'
     })
-    .when('/profile/', {
+    .when('/profile', {
       templateUrl: 'partials/profile.view.html',
       controller: 'profileCtrl'
     })

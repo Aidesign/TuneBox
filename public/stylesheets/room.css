@@ -3,12 +3,16 @@
 
 }
 
+.inline-block {
+	display: inline-block;
+}
+
 #sidebar-chat {
 	background-color: #e6e6e6;
 	height: 100%;
 	top: 0;
 	right: 0;
-	padding-top: 70px;
+	padding-top: 4.375em;
 	width: 16%;
 }
 
@@ -17,8 +21,8 @@
 }
 
 #chat-room-name hr {
-	margin-bottom: 10px;
-	margin-top: 10px;
+	margin-bottom: 0.625em;
+	margin-top: 0.625em;
 	background-color: #bfbfbf;
 	border-color: #bfbfbf;
 }
@@ -33,7 +37,7 @@
 	width: 90%;
 	margin-left: 5%;
 	padding-left: 2%;
-	height: 50px;
+	height: 3.125em;
 	resize: none;
 }
 
@@ -41,6 +45,9 @@
 	float: right;
 	margin-right: 5%;
 	margin-top: 2%;
+	color: #fff;
+	width: 4em;
+	height: 2em;
 }
 
 #chat-bottom {
@@ -59,10 +66,6 @@
 	background-color: #000000;
 }
 
-body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
-
 /*.container {
 	margin: 0px !important;
 }*/
@@ -73,7 +76,7 @@ body {
 
 .video-container {
 	/*height: 550px;*/
-	width: 750px;
+	width: 46.875em;
 }
 
 .youtube-search-bar {
@@ -81,17 +84,17 @@ body {
 }
 
 .search-results {
-	height: 450px;
+	height: 28.125em;
 	width: 100%;
 	overflow-y: scroll;
 }
 
 .portfolio-item {
-    margin-bottom: 25px;
+    margin-bottom: 1.563em;
 }
 
 footer {
-    margin: 50px 0;
+    margin: 3.125em 0;
     text-align: center;
 }
 
@@ -106,5 +109,30 @@ footer {
 	top: 0;
 	right: 0;
 	overflow-y: hidden;
-	padding-top: 70px;
+	padding-top: 4.375em;
+}
+
+#room-description-text {
+	display: inline-block;
+	font-size: 1.5em;
+	margin-bottom: 1em;
+}
+
+#video_button {
+	color: #fff;
+	float: right;
+	width: 8em !important;
+	height: 2em !important;
+}
+
+#search_button {
+	color: #fff;
+	float: right;
+	width: 8em !important;
+	height: 2em !important;
+}
+
+#current_video_title {
+	display: inline-block;
+	font-size: 1.5em;
 }

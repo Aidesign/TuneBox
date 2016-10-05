@@ -96,7 +96,10 @@ module.exports.createRoom = function(req, res) {
 	room.description = req.body.description;
 	room.admin = req.body.admin;
 	room.tags = tagsReq;
-
+	if (req.body.userLimit){
+		room.userLimit = req.body.userLimit;		
+	}
+	
 	if (req.body.public) {
 		room.public = req.body.public;
 	} else {

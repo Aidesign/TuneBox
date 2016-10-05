@@ -1,5 +1,17 @@
 var mongoose = require("mongoose");
 
+var videoSchema = new mongoose.Schema({
+	title: {
+		type:String,
+		required: true
+	},
+	id:{
+		type: String,
+		required: true
+	}
+});
+
+mongoose.model('CurrentVideo', videoSchema);
 
 var roomSchema = new mongoose.Schema({
 	roomName: {
@@ -35,7 +47,14 @@ var roomSchema = new mongoose.Schema({
 	tags: {
 		type: [String]
 	},
-	nowPlayingID: Number
+	currentVideo: {
+		type: videoSchema,
+		required: true,
+		default: {
+			title: 'BLASPHEMY- "War Command"',
+			id: 'JGbvN25xs1w'
+		}
+	}
 });
 
 mongoose.model('Room', roomSchema);

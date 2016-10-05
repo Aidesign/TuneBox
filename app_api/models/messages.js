@@ -12,6 +12,10 @@ var messageSchema = new mongoose.Schema({
 	time: {
 		type: Date,
 		required: true
+	},
+	room: {
+		type: String,
+		required: true
 	}
 });
 

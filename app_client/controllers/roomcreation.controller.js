@@ -18,6 +18,7 @@
 			}]);*/
 			$scope.room.admin = mail;
 
+			console.log($scope.room.userLimit);
 			var tags = $scope.room.tags;
 			var cleanedTags = [];
 
@@ -48,7 +49,7 @@
 			$scope.room.tags = cleanedTags;
 
 			roomService.createRoom($scope.room).success(function(res) {
-				$location.path('/');
+				$location.path('/browse');
 
 			}).error(function(res) {
 				console.log(res);

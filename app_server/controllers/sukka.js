@@ -7,7 +7,13 @@ var server = http.Server(app);
 module.exports = function(io) {
 	io.on('connection', function(socket) {
 		console.log('a user connected');
+		
+		socket.on('msg', function(message){
+			console.log('message:'+message);
+		});
 	});
+
+
 
 
 	console.log("Täällä");
