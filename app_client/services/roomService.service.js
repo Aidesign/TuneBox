@@ -22,14 +22,35 @@
 
 		var getPublicRooms = function(){
 			return $http.get('api/rooms').success(function(data){
-
 			});
 		}
 
 		var getRoom = function(_id){
 			return $http.get('api/room/'+_id).success(function(data){
-
 			});
+		}
+
+		var editRoom = function(room) {
+			var url = '/api/room/' + room._id;
+			return $http.put(url, room);
+		}
+
+		var filterDublicateTags = function(tags) {
+			var cleanedTags = [];
+			tags.forEach(function(string) {
+				var found = false;
+				if (cleanedTags.length == 0) cleanedTags.push(string);
+
+				cleanedTags.forEach(function(str) {
+					if (string === str) {
+						found = true;
+					}
+				});
+				if (!found) {
+					cleanedTags.push(string);
+				}
+			});
+			return cleanedTags;
 		}
 
 		var saveMessage = function(message){
@@ -59,9 +80,9 @@
 			getRoom: getRoom,
 			saveMessage: saveMessage,
 			getMessages: getMessages,
-			changeVideo: changeVideo
+			changeVideo: changeVideo,
+			editRoom: editRoom,
+			filterDublicateTags: filterDublicateTags
 		};
-
 	}
-
 })();

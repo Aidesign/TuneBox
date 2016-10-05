@@ -19,10 +19,19 @@
 				<label>Room tags separated by comma:</label>
 				<input class="form-control" ng-list="," ng-model="room.tags"></input>
 			</div>
+
+			<!--
+			<div>
+				<label>Room thumbnail:</label>
+				<input type="file" accept="image/*" ng-model="room.thumbnail" id="roomThumb"></input>
+			</div>
+			-->
+
 			<div>
 				<label> Public room?</label> 		
 				<input type="checkbox" ng-model="room.public"> </input>
 			</div>
+
 			<div ng-show="room.public">
 				<label> Population limit</label>
 				<input class="form-control" type="number" min="5" max="400" step="5" value="5" ng-model="room.userLimit"></input>
@@ -30,6 +39,7 @@
 			
 			<input type="button" id="create-room-button" class="btn btn-primary button-styling" value="Create" ng-click="createRoom()"></input>
 			<p> {{errorMessage}} </p>
+			
 		</form>
 	</div>
 

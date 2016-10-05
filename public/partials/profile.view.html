@@ -1,10 +1,8 @@
 <div class="col-md-10 col-md-offset-1">
-	<div>
-		<h1>Edit profile</h1>
-	</div>
+	<h1>Edit profile</h1>
 
-	<div ng-show="showError" class="alert alert-danger"><strong>Error: </strong>{{error}}!</div>
-	<div ng-show="showSuccess" class="alert alert-success">Changes saved</div>
+	<div ng-show="showError" class="alert alert-danger"><strong>Error: </strong>{{error}}. <span class="glyphicon glyphicon-remove hoverEffect" aria-hidden="true" ng-click="hideMessages()"></span></div>
+	<div  ng-show="showSuccess" class="alert alert-success">Changes saved! <span class="glyphicon glyphicon-remove hoverEffect" aria-hidden="true" ng-click="hideMessages()"></span></div>
 
 	<!-- Personal info -->
 	<div class="col-md-6">
@@ -35,7 +33,7 @@
 
 			<div class="form-group">
 				<div>
-					<button ng-click="save()" class="btn btn-default">Save</button>
+					<input ng-click="save()" class="btn btn-default" ng-disabled="!edited" value="Save">
 					<button ng-click="cancel()" class="btn btn-default">Cancel</button>
 				</div>
 			</div>
@@ -81,7 +79,7 @@
 
 			<div class="form-group">
 				<div>
-					<button ng-click="save()" class="btn btn-default">Save</button>
+					<input ng-click="save()" class="btn btn-default" value="Save" ng-disabled="!edited">
 					<button ng-click="cancel()" class="btn btn-default">Cancel</button>
 				</div>
 			</div>

@@ -33,7 +33,15 @@ var roomSchema = new mongoose.Schema({
 		required: true,
 		default: false
 	},
+	thumbnail: {
+		type: String
+	},
 	playlist: Boolean,
+	currentUsers: {
+		type: Number,
+		required: true,
+		default: 0
+	},
 	userLimit: {
 		type: Number,
 		required: true,
