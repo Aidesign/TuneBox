@@ -1,5 +1,9 @@
 #intro_content {
 	text-align: center;
-	background-color: #ff0066;
+	background-color: #e63900;
 	height: 30em;
+}
+
+#frontpage-title {
+	color: #fff;
 }

@@ -23,7 +23,9 @@
 		$scope.goToRoom = function(_id) {
 			console.log('Tääl');
 			$location.path("/room/" + _id);
-			$window.location.reload();
+			setTimeout(function() {
+				$window.location.reload();
+			}, 100);
 		}
 
 		$scope.showPublicRooms = function() {
