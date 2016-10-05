@@ -21,6 +21,9 @@
 			<div ng-repeat='room in adminRooms'> 
 				<!--<a href="/#/room/{{room._id}}"> {{room.roomName}} - {{room.description}}</a> -->
 				<a href="" ng-click="goToRoom(room._id)"> {{room.roomName}} - {{room.description}}</a>
+
+				<img ng-src="data:image/png;base64, {{ room.thumbnail }}">
+				
 				<p ng-repeat='tag in room.tags'> {{tag}}</p>
 				<p> {{room.currentUsers}} / {{room.userLimit}}</p>
 				<hr>
