@@ -40,3 +40,5 @@ body {
 	padding-top: 70px;
 	width: 16%;
 }
+
+.hoverEffect { cursor: pointer; }

@@ -52,9 +52,9 @@ module.exports.editUser = function(req, res) {
 						token: token
 					});
 				} else if (err.code == 11000) {
-					sendJSONresponse(res, 204, { message: 'Invalid email' });
+					sendJSONresponse(res, 400, { message: 'Invalid email' });
 				} else {
-					sendJSONresponse(res, 500, {message: err});
+					sendJSONresponse(res, 500, { message: err });
 				}
 			});
 		} else {

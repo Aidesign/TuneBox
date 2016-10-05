@@ -22,6 +22,7 @@
 				<a href="/#/room/{{room._id}}"> {{room.roomName}} - {{room.description}}</a>
 				<p ng-repeat='tag in room.tags'> {{tag}}</p>
 				<p> {{room.currentUsers}} / {{room.userLimit}}</p>
+				<a href="/#/room/edit/{{room._id}}">edit</a>
 				<hr>
 			</div> 
 

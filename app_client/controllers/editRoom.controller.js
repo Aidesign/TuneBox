@@ -11,12 +11,12 @@
 		roomService.getRoom($routeParams.roomId).success(function(room) {
 			$scope.room = room;
 			$scope.original = angular.copy(room);
-			$scope.edited = true;
+			$scope.edited = false;
 			$scope.$watch('room', function() {
 				if (!angular.equals($scope.room, $scope.original)) {
-					$scope.edited = false;
+					$scope.edited = true;
 				} else {
-					$scope.edited = true;	
+					$scope.edited = false;	
 				}
 			}, true);
 		}).error(function(err) {
@@ -26,12 +26,14 @@
 		// scope functions
 		$scope.save = function() {
 			var tags = roomService.filterDublicateTags($scope.room.tags);
-			$scope.room.tags = tags; // parempi tapa tehdä tämä?
+			$scope.room.tags = tags;
 			roomService.editRoom($scope.room).success(function(room) {
 				$scope.room = room;
+				$scope.original = angular.copy(room);
+				$scope.edited = false;
 				$scope.showError = false;
 				$scope.showSuccess = true;
-				$timeout(function() { $scope.showSuccess= false; }, 3000);
+				$timeout(function() { $scope.showSuccess= false; }, 4000);
 			}).error(function(err) {
 				$scope.error = err.message;
 				$scope.showError = true;
@@ -40,6 +42,11 @@
 
 		$scope.cancel = function() {
 			$location.path('/');
+		}
+
+		$scope.hideMessages = function() {
+			$scope.showError = false;
+			$scope.showSuccess = false;
 		}
 	}
 })();
