@@ -24,7 +24,7 @@ module.exports.saveMessage = function(req, res) {
 	msg.save(function(err) {
 		if (err) {
 			sendJSONresponse(res, 400, {
-				"message": err //"Room name already in use, please select another name."
+				"message": err
 			});
 		} else {
 			sendJSONresponse(res, 200, {
@@ -34,4 +34,36 @@ module.exports.saveMessage = function(req, res) {
 	});
 
 
-}
+};
+
+module.exports.getMessages = function(req, res) {
+	if (!req.params.roomid) {
+		sendJSONresponse(res, 400, {
+			"message": "Invalid request"
+		});
+		return;
+	}
+
+	Message
+	.find({
+		room: req.params.roomid
+	})
+	.sort({
+		time: 1
+	})
+	.exec(function(err, message){
+		if (!message) {
+				sendJSONresponse(res, 404, {
+					"message": "No messages in the room."
+				});
+				return;
+			} else if (err) {
+				sendJSONresponse(res, 404, {
+					"message": err
+				});
+				return;
+			}
+			sendJSONresponse(res, 200, message);
+	});
+
+};
