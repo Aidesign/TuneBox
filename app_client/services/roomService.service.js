@@ -13,9 +13,9 @@
 			});
 		};
 
-		var getUserRooms = function(userMail){
-			console.log(userMail);
-			return $http.get('api/rooms/'+userMail).success(function(data){
+		var getUserRooms = function(userID){
+			console.log(userID);
+			return $http.get('api/rooms/'+userID).success(function(data){
 				//console.log(data);		
 			});
 		}

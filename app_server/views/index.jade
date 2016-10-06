@@ -29,8 +29,8 @@ block content
 								span.white-text  Login
 						li(ng-show="loginData.showLogin")
 							a(href="#/profile")
-								span.white-text ProfileNameHere
-						li(ng-show="loginData.showLogin")
+								span.white-text {{user.name}}
+						li(ng-show="loginData.showLogout")
 							a(href="" ng-click="logout_function()")
 								span.glyphicon.glyphicon-log-out.white-text
 								span.white-text Log Out

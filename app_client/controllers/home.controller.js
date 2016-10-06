@@ -3,9 +3,9 @@
 		.module('TuneBox')
 		.controller('homeCtrl', homeCtrl);
 
-	homeCtrl.$inject = ['$scope', 'authentication', 'checkLogin'];
+	homeCtrl.$inject = ['$scope', 'authentication'];
 
-	function homeCtrl($scope, authentication, checkLogin) {
+	function homeCtrl($scope, authentication) {
 		/*if (authentication.isLoggedIn()) {
 			checkLogin.showLoginUI();
 		} else {

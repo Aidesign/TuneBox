@@ -19,6 +19,11 @@
 		<textarea ng-list="," class="form-control" ng-model=room.tags></textarea>
 	</div>
 
+	<div class="form-group">
+		<label>Playlist ID:</label>
+		<input class="form-control" ng-model=room.playlistId></textarea>
+	</div>
+
 	<input class="btn btn-default" ng-click="save()"  ng-disabled="!edited" value="Save">
 	<button class="btn btn-default" ng-click="cancel()">Cancel</button>
 </div>

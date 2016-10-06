@@ -8,7 +8,7 @@ var sendJSONresponse = function(res, status, content) {
 };
 
 module.exports.getUserRooms = function(req, res) {
-	if (!req.params.userMail) {
+	if (!req.params.userid) {
 		sendJSONresponse(res, 400, {
 			"message": "No permit."
 		});
@@ -17,7 +17,7 @@ module.exports.getUserRooms = function(req, res) {
 
 	Room
 		.find({
-			admin: req.params.userMail
+			admin: req.params.userid
 		})
 		.exec(function(err, room) {
 			if (!room) {
@@ -189,6 +189,7 @@ module.exports.editRoom = function(req, res) {
 				room.roomName = req.body.roomName;
 				room.description = req.body.description;
 				room.tags = req.body.tags;
+				room.playlistId = req.body.playlistId;
 				room.save(function(err) {
 					if (!err) {
 						sendJSONresponse(res, 200, room);
