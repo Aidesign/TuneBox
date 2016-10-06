@@ -96,13 +96,13 @@ module.exports.createRoom = function(req, res) {
 	room.tags = req.body.tags;
 
 	//room.thumbnail = req.body.thumbnail;
-	//fs test
-	var img = fs.readFileSync("./public/uploads/absolutely_ebin.png");
+	// with fs
+	var img = fs.readFileSync("./public/images/thumbnail.jpg");
 	var encImg = new Buffer(img).toString('base64');
 	/*
-	var thumbnail = {name: "ebin.png",
+	var thumbnail = {name: "thumb.jpg",
 					img: encImg,
-					contentType: "image/png"
+					contentType: "image/jpg"
 				};
 	*/
 

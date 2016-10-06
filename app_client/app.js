@@ -1,4 +1,4 @@
-var app = angular.module('TuneBox', ['ngResource', 'ngRoute']);
+var app = angular.module('TuneBox', ['ngResource', 'ngRoute', 'ngFileUpload', 'ngImgCrop']);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider
