@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var uglifyJs = require("uglify-js");
 var fs = require('fs');
+/*require("angular-animate");
+require("angular-sanitize");
+require("angular-ui-bootstrap");*/
 
 require('./app_api/models/db');
 require('./app_api/config/passport'); 

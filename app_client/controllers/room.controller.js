@@ -4,10 +4,17 @@
 		.controller("roomCtrl", roomCtrl);
 
 	roomCtrl.$inject = ['$scope', 'authentication', '$location', '$routeParams', 'roomService',
-		'$http', '$log', 'youtubeService', '$window'
-	];
+		'$http', '$log', 'youtubeService', '$window'];
 
-	function roomCtrl($scope, authentication, $location, $routeParams, roomService, $http, $log, youtubeService, $window) {
+	function roomCtrl($scope, authentication, $location,
+		$routeParams, roomService, $http, $log, youtubeService, $window, $sce) {
+
+		$scope.dynamicPopover = {
+			templateUrl: 'partials/chatSettingsPopoverTemplate.html',
+			title: 'Settings'
+		};
+
+		var messageColor = "#000";
 
 		if (!authentication.isLoggedIn()) {
 			$location.path('/');
@@ -46,13 +53,13 @@
 
 		};
 
-		$window.onPlayerStateChange = function(event){
-			if (event.data == YT.PlayerState.ENDED){
+		$window.onPlayerStateChange = function(event) {
+			if (event.data == YT.PlayerState.ENDED) {
 				randomizedVideo();
 			}
 		};
 
-		$window.onError = function(event){
+		$window.onError = function(event) {
 			console.log(event);
 			randomizedVideo();
 		};
@@ -89,13 +96,13 @@
 			});
 		}
 
-		function changeDBVideo(video){
-			roomService.changeVideo($routeParams.roomid, video).success(function(data){
+		function changeDBVideo(video) {
+			roomService.changeVideo($routeParams.roomid, video).success(function(data) {
 				sukka.emit('changeVideo', $routeParams.roomid);
 			});
 		}
 
-		function changePlaying(){
+		function changePlaying() {
 			roomService.getRoom($routeParams.roomid).success(function(data) {
 				console.log(data);
 				vRoom = data;
@@ -103,7 +110,7 @@
 			});
 		}
 
-		function launchVideo(video, archive){
+		function launchVideo(video, archive) {
 			show_search_button();
 			$scope.classHidden = "shown";
 			$scope.classShown = "hidden";
@@ -115,14 +122,14 @@
 			$log.info('Launched id:' + video.id + ' and title:' + video.title);
 		}
 
-		function randomizedVideo(){
+		function randomizedVideo() {
 			var ranNum = Math.floor((Math.random() * $scope.room.tags.length) + 1);
-			var searchString = $scope.room.tags[ranNum-1];
+			var searchString = $scope.room.tags[ranNum - 1];
 			console.log(searchString);
-			
+
 			var pubAfter = new Date();
 			var currentYear = pubAfter.getFullYear();
-			pubAfter.setFullYear(currentYear-2);
+			pubAfter.setFullYear(currentYear - 2);
 			console.log(pubAfter);
 
 			var results = [];
@@ -134,7 +141,7 @@
 						publishedAfter: pubAfter,
 						maxResults: '50',
 						part: 'id,snippet',
-						q: "'"+searchString+"' song -'the best' -'vs'"
+						q: "'" + searchString + "' song -'the best' -'vs'"
 					}
 				})
 				.success(function(data) {
@@ -143,11 +150,11 @@
 						return;
 					}
 					console.log(data);
-					var videoNum = Math.floor((Math.random()*data.items.length)+0);
+					var videoNum = Math.floor((Math.random() * data.items.length) + 0);
 					var video = {};
 					video.id = data.items[videoNum].id.videoId;
 					video.title = data.items[videoNum].snippet.title;
-					$scope.launch(video,true);
+					$scope.launch(video, true);
 
 				})
 				.error(function() {
@@ -239,6 +246,7 @@
 				//console.log($scope.message.message);
 				$scope.message.sender = authentication.getUserObject().name;
 				$scope.message.room = $routeParams.roomid;
+				$scope.message.color = messageColor;
 				//console.log($scope.message);
 				roomService.saveMessage($scope.message).success(function(data) {
 					console.log(data);
@@ -248,6 +256,12 @@
 				});
 			}
 
+		}
+
+		$scope.getMessageColor = function(val) {
+			//console.log("Chat color changed to " + val);
+			messageColor = val;
+			//console.log("messageColor = " + messageColor);
 		}
 
 	}
