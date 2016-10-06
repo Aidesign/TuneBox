@@ -2,10 +2,10 @@ var mongoose = require("mongoose");
 
 var videoSchema = new mongoose.Schema({
 	title: {
-		type:String,
+		type: String,
 		required: true
 	},
-	id:{
+	id: {
 		type: String,
 		required: true
 	}
@@ -20,10 +20,10 @@ var roomSchema = new mongoose.Schema({
 		required: true
 	},
 	description: {
-		type:String,
+		type: String,
 		default: "This is your room's description."
-	}, 
-	admin : {
+	},
+	admin: {
 		type: String,
 		required: true,
 		default: ["test"]
@@ -36,7 +36,14 @@ var roomSchema = new mongoose.Schema({
 	thumbnail: {
 		type: String
 	},
-	playlist: Boolean,
+	playlist: {
+		type: Boolean,
+		required: true,
+		default: false
+	},
+	playlistId:{
+		type: String
+	},
 	currentUsers: {
 		type: Number,
 		required: true,
@@ -47,7 +54,7 @@ var roomSchema = new mongoose.Schema({
 		required: true,
 		default: 10
 	},
-	currentUsers:{
+	currentUsers: {
 		type: Number,
 		required: true,
 		default: 0

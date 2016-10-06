@@ -29,7 +29,7 @@ block content
 								span.white-text  Login
 						li(ng-show="loginData.showName")
 							a(href="#/profile")
-								span.white-text ProfileNameHere
+								span.white-text {{user.name}}
 						li(ng-show="loginData.showLogout")
 							a(href="" ng-click="logout_function()")
 								span.glyphicon.glyphicon-log-out.white-text

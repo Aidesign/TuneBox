@@ -4,14 +4,16 @@
 		.controller("roomCtrl", roomCtrl);
 
 	roomCtrl.$inject = ['$scope', 'authentication', '$location', '$routeParams', 'roomService',
-		'$http', '$log', 'youtubeService', '$window'
+		'$http', '$log', 'youtubeService', '$window', 'profileService'
 	];
 
-	function roomCtrl($scope, authentication, $location, $routeParams, roomService, $http, $log, youtubeService, $window) {
+	function roomCtrl($scope, authentication, $location, $routeParams, roomService, $http, $log, youtubeService, $window, profileService) {
 
 		if (!authentication.isLoggedIn()) {
 			$location.path('/');
 		}
+
+		$scope.isAdmin = false;
 
 		var sukka = io('http://localhost:3000/');
 
@@ -39,6 +41,17 @@
 				vRoom = data;
 				$scope.room = vRoom;
 				console.log($scope.room.roomName);
+				profileService.getProfile(vRoom.admin).success(function(data) {
+					$scope.admin = data;
+
+					if (authentication.getUserObject()._id == $scope.room.admin) {
+						console.log("admin");
+						$scope.isAdmin = true;
+					} else {
+						console.log("not admin");
+						$scope.isAdmin = false;
+					}
+				});
 				launchVideo(vRoom.currentVideo, true);
 				getMessages();
 
@@ -46,13 +59,14 @@
 
 		};
 
-		$window.onPlayerStateChange = function(event){
-			if (event.data == YT.PlayerState.ENDED){
+		$window.onPlayerStateChange = function(event) {
+			if (event.data == YT.PlayerState.ENDED) {
+
 				randomizedVideo();
 			}
 		};
 
-		$window.onError = function(event){
+		$window.onError = function(event) {
 			console.log(event);
 			randomizedVideo();
 		};
@@ -89,13 +103,13 @@
 			});
 		}
 
-		function changeDBVideo(video){
-			roomService.changeVideo($routeParams.roomid, video).success(function(data){
+		function changeDBVideo(video) {
+			roomService.changeVideo($routeParams.roomid, video).success(function(data) {
 				sukka.emit('changeVideo', $routeParams.roomid);
 			});
 		}
 
-		function changePlaying(){
+		function changePlaying() {
 			roomService.getRoom($routeParams.roomid).success(function(data) {
 				console.log(data);
 				vRoom = data;
@@ -103,7 +117,7 @@
 			});
 		}
 
-		function launchVideo(video, archive){
+		function launchVideo(video, archive) {
 			show_search_button();
 			$scope.classHidden = "shown";
 			$scope.classShown = "hidden";
@@ -115,44 +129,49 @@
 			$log.info('Launched id:' + video.id + ' and title:' + video.title);
 		}
 
-		function randomizedVideo(){
-			var ranNum = Math.floor((Math.random() * $scope.room.tags.length) + 1);
-			var searchString = $scope.room.tags[ranNum-1];
-			console.log(searchString);
-			
-			var pubAfter = new Date();
-			var currentYear = pubAfter.getFullYear();
-			pubAfter.setFullYear(currentYear-2);
-			console.log(pubAfter);
+		function randomizedVideo() {
+			if (authentication.getUserObject()._id == $scope.admin._id) {
 
-			var results = [];
+				var ranNum = Math.floor((Math.random() * $scope.room.tags.length) + 1);
+				var searchString = $scope.room.tags[ranNum - 1];
+				console.log(searchString);
 
-			$http.get('https://www.googleapis.com/youtube/v3/search', {
-					params: {
-						key: 'AIzaSyBJmqwVRUJUXd2QZD1agSvI0B5DzYbiKuc',
-						type: 'video',
-						publishedAfter: pubAfter,
-						maxResults: '50',
-						part: 'id,snippet',
-						q: "'"+searchString+"' song -'the best' -'vs'"
-					}
-				})
-				.success(function(data) {
-					if (data.items.length === 0) {
-						console.log("No results");
-						return;
-					}
-					console.log(data);
-					var videoNum = Math.floor((Math.random()*data.items.length)+0);
-					var video = {};
-					video.id = data.items[videoNum].id.videoId;
-					video.title = data.items[videoNum].snippet.title;
-					$scope.launch(video,true);
+				var pubAfter = new Date();
+				var currentYear = pubAfter.getFullYear();
+				pubAfter.setFullYear(currentYear - 2);
+				console.log(pubAfter);
 
-				})
-				.error(function() {
-					$log.info('Search error');
-				});
+				var results = [];
+
+				$http.get('https://www.googleapis.com/youtube/v3/search', {
+						params: {
+							key: 'AIzaSyBJmqwVRUJUXd2QZD1agSvI0B5DzYbiKuc',
+							type: 'video',
+							publishedAfter: pubAfter,
+							maxResults: '50',
+							part: 'id,snippet',
+							q: "'" + searchString + "' song -'the best' -'vs'"
+						}
+					})
+					.success(function(data) {
+						if (data.items.length === 0) {
+							console.log("No results");
+							return;
+						}
+						console.log(data);
+						var videoNum = Math.floor((Math.random() * data.items.length) + 0);
+						var video = {};
+						video.id = data.items[videoNum].id.videoId;
+						video.title = data.items[videoNum].snippet.title;
+						$scope.launch(video, true);
+
+					})
+					.error(function() {
+						$log.info('Search error');
+					});
+			} else {
+				console.log("BACK OFF YO");
+			}
 
 		}
 
@@ -248,7 +267,17 @@
 				});
 			}
 
-		}
+		};
+
+		$scope.isAdmin = function() {
+			if (authentication.getUserObject()._id == $scope.room.admin) {
+				console.log("admin");
+				return true;
+			} else {
+				console.log("not admin");
+				return false;
+			}
+		};
 
 	}
 

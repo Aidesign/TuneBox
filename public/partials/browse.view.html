@@ -30,7 +30,7 @@
 						<!-- <img src="images/thumbnail.jpg" class="room_thumbnail"> -->
 						<img ng-src="data:image/png;base64, {{ room.thumbnail }}" class="room_thumbnail">
 						<br>
-						<a class="room-name-link" href ng-click="goToRoom(room._id)"> {{room.description}}</a>
+						<a class="room-name-link" href ng-click="goToRoom(room._id)"> {{room.description}}</a> <a href="/#/room/edit/{{room._id}}">EDIT</a>
 						<br>
 						<span class="room-tag-text" ng-repeat='tag in room.tags'> {{tag}}</span>
 						<br>

@@ -20,5 +20,7 @@
 			checkLogin.showLogoutUI();
 			$location.path('/');
 		}
+
+		$scope.user = authentication.getUserInfo();
 	}
 })();

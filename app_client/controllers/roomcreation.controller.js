@@ -12,7 +12,7 @@
 
 		$scope.createRoom = function() {
 			
-			var mail = authentication.getUserInfo().email;
+			var mail = authentication.getUserInfo()._id;
 			/*$scope.room = $scope.room.concat([{
 				admin: userName
 			}]);*/
