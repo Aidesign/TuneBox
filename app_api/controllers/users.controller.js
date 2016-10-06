@@ -29,7 +29,7 @@ module.exports.getUser = function(req, res) {
 }
 
 module.exports.editUser = function(req, res) {
-	if (!req.body.name || !req.body.email || !req.body.homePage || !req.body.organization) {
+	if (!req.body.name || !req.body.email || !req.body.homePage || !req.body.organization || !req.body.tags) {
 		sendJSONresponse(res, 400, {
 			message: 'All fields are required'
 		});
@@ -44,6 +44,7 @@ module.exports.editUser = function(req, res) {
 			user.email = req.body.email;
 			user.homePage = req.body.homePage;
 			user.organization = req.body.organization;
+			user.tags = req.body.tags;
 			user.save(function(err) {
 				if(!err) {
 					var token = user.generateJwt();
