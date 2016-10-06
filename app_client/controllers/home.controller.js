@@ -6,5 +6,11 @@
 	homeCtrl.$inject = ['$scope', 'authentication'];
 
 	function homeCtrl($scope, authentication) {
+		/*if (authentication.isLoggedIn()) {
+			checkLogin.showLoginUI();
+		} else {
+			checkLogin.showLogoutUI();
+		}*/
+
 	}
 })();

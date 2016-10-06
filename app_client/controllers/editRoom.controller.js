@@ -9,7 +9,7 @@
 		if (!authentication.isLoggedIn()) $location.path('/');
 
 		roomService.getRoom($routeParams.roomId).success(function(room) {
-			if (room.admin !== authentication.getUserObject().email) $location.path('/');
+			if (room.admin !== authentication.getUserObject()._id) $location.path('/');
 			$scope.room = room;
 			$scope.original = angular.copy(room);
 			$scope.edited = false;

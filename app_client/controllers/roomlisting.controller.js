@@ -14,8 +14,8 @@
 		if (!authentication.isLoggedIn()) {
 			$location.path('/');
 		}
-		var userMail = authentication.getUserInfo().email;
-		roomService.getUserRooms(userMail).success(function(data) {
+		var userID = authentication.getUserInfo()._id;
+		roomService.getUserRooms(userID).success(function(data) {
 			console.log(data);
 			$scope.adminRooms = data;
 		});

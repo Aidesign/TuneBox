@@ -112,6 +112,26 @@ footer {
 	padding-top: 4.375em;
 }
 
+#chat-message-div {
+	margin-bottom: 0.5em;
+}
+
+#message-sender {
+	font-weight: bold;
+}
+
+#chat-settings-cog {
+	margin-top: 2%;
+	margin-left: 7%;
+	color: #4d1a00;
+}
+
+#chat-settings-cog:hover {
+	color: #000;
+	cursor: pointer; 
+	cursor: hand;
+}
+
 #room-description-text {
 	display: inline-block;
 	font-size: 1.5em;
