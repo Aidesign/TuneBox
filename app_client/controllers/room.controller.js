@@ -4,10 +4,17 @@
 		.controller("roomCtrl", roomCtrl);
 
 	roomCtrl.$inject = ['$scope', 'authentication', '$location', '$routeParams', 'roomService',
-		'$http', '$log', 'youtubeService', '$window'];
+		'$http', '$log', 'youtubeService', '$window'
+	];
 
 	function roomCtrl($scope, authentication, $location,
 		$routeParams, roomService, $http, $log, youtubeService, $window, $sce) {
+
+		$scope.colorCollection = ['#ff0000', '#0066ff', '#ff9900', '#990099',
+			'#ff8000', '#196619', '#ff0080', '#00ff99', '#cc66ff', '#ffff00'
+		]
+
+		$scope.selectedIndex = -1; 
 
 		$scope.dynamicPopover = {
 			templateUrl: 'partials/chatSettingsPopoverTemplate.html',
@@ -258,10 +265,11 @@
 
 		}
 
-		$scope.getMessageColor = function(val) {
-			//console.log("Chat color changed to " + val);
+		$scope.getMessageColor = function(val, $index) {
+			console.log("Chat color changed to " + val);
 			messageColor = val;
-			//console.log("messageColor = " + messageColor);
+			$scope.selectedIndex = $index;
+			console.log("messageColor = " + messageColor);
 		}
 
 	}

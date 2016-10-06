@@ -8,7 +8,7 @@
 	background-color: #000;
 	display: inline-block;
 	margin-left: 0em;
-	/*margin-right: 2%;*/
+	margin-right: 0.5em;
 }
 
 #name-color {
@@ -24,4 +24,8 @@
 
 #popover-settings-secondary {
 	height: 10em;
+}
+
+.black-border {
+	outline: solid 0.2em;
 }
