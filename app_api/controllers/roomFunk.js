@@ -94,7 +94,7 @@ module.exports.createRoom = function(req, res) {
 	room.description = req.body.description;
 	room.admin = req.body.admin;
 	room.tags = req.body.tags;
-	
+
 	//room.thumbnail = req.body.thumbnail;
 	//fs test
 	var img = fs.readFileSync("./public/uploads/absolutely_ebin.png");
@@ -108,10 +108,10 @@ module.exports.createRoom = function(req, res) {
 
 	room.thumbnail = encImg;
 
-	if (req.body.userLimit){
+	if (req.body.userLimit) {
 		room.userLimit = req.body.userLimit;
 	}
-	
+
 	if (req.body.public) {
 		room.public = req.body.public;
 	} else {
@@ -129,32 +129,77 @@ module.exports.createRoom = function(req, res) {
 			});
 		}
 	});
-}
+};
+
+module.exports.updateVideo = function(req, res) {
+	if (!req.body.id || !req.params.roomid) {
+		sendJSONresponse(res, 406, {
+			message: 'Invalid request'
+		});
+		return;
+	}
+
+	Room.findOne({
+		_id: req.params.roomid
+	}, function(err, room) {
+		if (err) {
+			sendJSONresponse(res, 500, err);
+		} else {
+			room.currentVideo.id = req.body.id;
+			room.currentVideo.title = req.body.title;
+			room.save(function(err) {
+				if (!err) {
+					sendJSONresponse(res, 200, room);
+				} else if (err.code == 11000) {
+					sendJSONresponse(res, 406, {
+						message: 'Invalid email'
+					});
+				} else {
+					sendJSONresponse(res, 406, {
+						message: err
+					});
+				}
+			});
+		}
+	});
+};
 
 module.exports.editRoom = function(req, res) {
 	if (!req.body.roomName || !req.body.description || !req.body.tags) {
-		sendJSONresponse(res, 400, { message: 'All fieds are required' });
+		sendJSONresponse(res, 400, {
+			message: 'All fieds are required'
+		});
 		return;
 	}
 
 	Room
-		.findOne({ _id: req.params.roomId })
+		.findOne({
+			_id: req.params.roomId
+		})
 		.exec(function(err, room) {
 			if (err) {
-				sendJSONresponse(res, 500, { message: err });
+				sendJSONresponse(res, 500, {
+					message: err
+				});
 			} else if (!room) {
-				sendJSONresponse(res, 404, { message: 'No room found'});
+				sendJSONresponse(res, 404, {
+					message: 'No room found'
+				});
 			} else {
 				room.roomName = req.body.roomName;
 				room.description = req.body.description;
 				room.tags = req.body.tags;
 				room.save(function(err) {
-					if(!err) {
+					if (!err) {
 						sendJSONresponse(res, 200, room);
 					} else if (err.code == 11000) {
-						sendJSONresponse(res, 400, { message: 'Room name already in use' });
+						sendJSONresponse(res, 400, {
+							message: 'Room name already in use'
+						});
 					} else {
-						sendJSONresponse(res, 500, { message: err });
+						sendJSONresponse(res, 500, {
+							message: err
+						});
 					}
 				});
 			}

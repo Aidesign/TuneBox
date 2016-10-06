@@ -131,7 +131,7 @@
 					<hr>
 				</li>
 				<li id="chat-content">
-					<span>Chat Comes Here</span>
+					<div ng-repeat="message in messages">{{message.sender}}:{{message.message}} </div>
 				</li>
 				<li id="chat-bottom">
 					<textarea class="form-control" id="send-message-box" placeholder="Send a message" name="chat-text" rows="2" ng-model="message.message"></textarea>

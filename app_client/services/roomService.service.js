@@ -55,7 +55,21 @@
 
 		var saveMessage = function(message){
 			return $http.post('api/saveMessage', message).success(function(data){
+				//console.log(data);
+			});
+		}
+
+		var getMessages = function(_id){
+			return $http.get('api/getMessages/'+_id).success(function(data){
 				console.log(data);
+			});
+		}
+
+		var changeVideo = function(_id, video){
+			console.log("SERVICE");
+			console.log(video);
+			return $http.put('api/updateVideo/'+_id, video).success(function(data){
+
 			});
 		}
 
@@ -64,6 +78,9 @@
 			getUserRooms: getUserRooms,
 			getPublicRooms: getPublicRooms,
 			getRoom: getRoom,
+			saveMessage: saveMessage,
+			getMessages: getMessages,
+			changeVideo: changeVideo,
 			editRoom: editRoom,
 			filterDublicateTags: filterDublicateTags
 		};
