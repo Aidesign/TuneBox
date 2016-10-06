@@ -14,23 +14,23 @@ block content
 				a(class="navbar-brand white-text" href="#/") Tunebox
 				div.collapse.navbar-collapse#bs-example-navbar-collapse1
 					ul.nav.navbar-nav
-						li(ng-show="loginData.showBrowse")
+						li(ng-show="loginData.showLogin")
 							a(href="#/browse" class="white-text") Browse
-						li(ng-show="loginData.showCreateRoom")
+						li(ng-show="loginData.showLogin")
 							a(href="#/create-room" class="white-text") Create Room
 					ul.nav.navbar-nav.navbar-right.very-small-padding-right
-						li(ng-show="loginData.showRegister")
+						li(ng-hide="loginData.showLogin")
 							a(href="#/register")
 								span.glyphicon.glyphicon-user.white-text
 								span.white-text  Sign Up 
-						li(ng-show="loginData.showLogin")
+						li(ng-hide="loginData.showLogin")
 							a(href="#/login")
 								span.glyphicon.glyphicon-log-in.white-text
 								span.white-text  Login
-						li(ng-show="loginData.showName")
+						li(ng-show="loginData.showLogin")
 							a(href="#/profile")
 								span.white-text ProfileNameHere
-						li(ng-show="loginData.showLogout")
+						li(ng-show="loginData.showLogin")
 							a(href="" ng-click="logout_function()")
 								span.glyphicon.glyphicon-log-out.white-text
 								span.white-text Log Out
