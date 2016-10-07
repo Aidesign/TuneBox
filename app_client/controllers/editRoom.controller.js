@@ -42,7 +42,7 @@
 		}
 
 		$scope.cancel = function() {
-			$location.path('/');
+			$location.path('/browse');
 		}
 
 		$scope.hideMessages = function() {
