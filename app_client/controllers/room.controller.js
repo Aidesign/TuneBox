@@ -4,10 +4,24 @@
 		.controller("roomCtrl", roomCtrl);
 
 	roomCtrl.$inject = ['$scope', 'authentication', '$location', '$routeParams', 'roomService',
-		'$http', '$log', 'youtubeService', '$window', 'profileService'
+		'$http', '$log', 'youtubeService', '$window', '$sce', 'profileService'
 	];
 
-	function roomCtrl($scope, authentication, $location, $routeParams, roomService, $http, $log, youtubeService, $window, profileService) {
+	function roomCtrl($scope, authentication, $location,
+		$routeParams, roomService, $http, $log, youtubeService, $window, $sce, profileService) {
+
+		$scope.colorCollection = ['#ff0000', '#0066ff', '#ff9900', '#990099',
+			'#ff8000', '#196619', '#ff0080', '#00ff99', '#cc66ff', '#ffff00'
+		]
+
+		$scope.selectedIndex = -1;
+
+		$scope.dynamicPopover = {
+			templateUrl: 'partials/chatSettingsPopoverTemplate.html',
+			title: 'Settings'
+		};
+
+		var messageColor = "#000";
 
 		if (!authentication.isLoggedIn()) {
 			$location.path('/');
@@ -61,7 +75,6 @@
 
 		$window.onPlayerStateChange = function(event) {
 			if (event.data == YT.PlayerState.ENDED) {
-
 				randomizedVideo();
 			}
 		};
@@ -139,6 +152,43 @@
 		}
 
 		function randomizedVideo() {
+			var ranNum = Math.floor((Math.random() * $scope.room.tags.length) + 1);
+			var searchString = $scope.room.tags[ranNum - 1];
+			console.log(searchString);
+
+			var pubAfter = new Date();
+			var currentYear = pubAfter.getFullYear();
+			pubAfter.setFullYear(currentYear - 2);
+			console.log(pubAfter);
+
+			var results = [];
+
+			$http.get('https://www.googleapis.com/youtube/v3/search', {
+					params: {
+						key: 'AIzaSyBJmqwVRUJUXd2QZD1agSvI0B5DzYbiKuc',
+						type: 'video',
+						publishedAfter: pubAfter,
+						maxResults: '50',
+						part: 'id,snippet',
+						q: "'" + searchString + "' song -'the best' -'vs'"
+					}
+				})
+				.success(function(data) {
+					if (data.items.length === 0) {
+						console.log("No results");
+						return;
+					}
+					console.log(data);
+					var videoNum = Math.floor((Math.random() * data.items.length) + 0);
+					var video = {};
+					video.id = data.items[videoNum].id.videoId;
+					video.title = data.items[videoNum].snippet.title;
+					$scope.launch(video, true);
+
+				})
+				.error(function() {
+					$log.info('Search error');
+				});
 			if (authentication.getUserObject()._id == $scope.admin._id) {
 
 				var ranNum = Math.floor((Math.random() * $scope.room.tags.length) + 1);
@@ -267,6 +317,7 @@
 				//console.log($scope.message.message);
 				$scope.message.sender = authentication.getUserObject().name;
 				$scope.message.room = $routeParams.roomid;
+				$scope.message.color = messageColor;
 				//console.log($scope.message);
 				roomService.saveMessage($scope.message).success(function(data) {
 					console.log(data);
@@ -323,6 +374,12 @@
 					console.log("Toggled off");
 				}
 			});
+		}
+		$scope.getMessageColor = function(val, $index) {
+			console.log("Chat color changed to " + val);
+			messageColor = val;
+			$scope.selectedIndex = $index;
+			console.log("messageColor = " + messageColor);
 		}
 
 	}

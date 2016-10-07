@@ -61,7 +61,8 @@
 				homePage: token.homePage,
 				premium: token.premium,
 				privateLimit: token.privateLimit,
-				publicLimit: token.publicLimit
+				publicLimit: token.publicLimit,
+				tags: token.tags
 			}
 			return user;
 		}

@@ -132,10 +132,14 @@
 					<hr>
 				</li>
 				<li id="chat-content">
-					<div ng-repeat="message in messages">{{message.sender}}:{{message.message}} </div>
+					<div id="chat-message-div" ng-repeat="message in messages">
+						<span ng-style="{ 'color' :  message.color }" id="message-sender">{{message.sender}}:</span>
+						<span id="message-text">{{message.message}}</span> 
+					</div>
 				</li>
 				<li id="chat-bottom">
 					<textarea class="form-control" id="send-message-box" placeholder="Send a message" name="chat-text" rows="2" ng-model="message.message"></textarea>
+					<span uib-popover-template="dynamicPopover.templateUrl" id="chat-settings-cog" class="glyphicon glyphicon-cog"></span>
 					<input class="btn btn-primary button-styling" id="send-message" ng-click="sendMessage()" value="Chat">
 				</li>
 			</ul>

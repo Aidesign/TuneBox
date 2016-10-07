@@ -1,4 +1,4 @@
-var app = angular.module('TuneBox', ['ngResource', 'ngRoute']);
+var app = angular.module('TuneBox', ['ngResource', 'ngRoute', 'ui.bootstrap']);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider

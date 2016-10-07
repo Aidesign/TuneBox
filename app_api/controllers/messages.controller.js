@@ -20,6 +20,7 @@ module.exports.saveMessage = function(req, res) {
 	msg.message = req.body.message;
 	msg.time = Date.now();
 	msg.room = req.body.room;
+	msg.color = req.body.color;
 
 	msg.save(function(err) {
 		if (err) {
