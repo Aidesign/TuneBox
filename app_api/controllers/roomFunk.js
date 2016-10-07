@@ -97,8 +97,8 @@ module.exports.createRoom = function(req, res) {
 
 	//room.thumbnail = req.body.thumbnail;
 	// with fs
-	var img = fs.readFileSync("./public/images/thumbnail.jpg");
-	var encImg = new Buffer(img).toString('base64');
+	//var img = fs.readFileSync("./public/images/thumbnail.jpg");
+	//var encImg = new Buffer(img).toString('base64');
 	/*
 	var thumbnail = {name: "thumb.jpg",
 					img: encImg,
@@ -106,7 +106,7 @@ module.exports.createRoom = function(req, res) {
 				};
 	*/
 
-	room.thumbnail = encImg;
+	//room.thumbnail = encImg;
 
 	if (req.body.userLimit) {
 		room.userLimit = req.body.userLimit;
