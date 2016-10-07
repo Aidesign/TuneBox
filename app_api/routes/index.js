@@ -21,6 +21,7 @@ router.post('/createRoom', roomFunctions.createRoom);
 router.get('/room/:roomid/', roomFunctions.getRoom);
 router.put('/updateVideo/:roomid/', roomFunctions.updateVideo);
 router.put('/room/:roomId', roomFunctions.editRoom);
+router.put('/togglePlaylist/:roomid', roomFunctions.togglePlaylist);
 
 // Message
 router.post('/saveMessage', messageControls.saveMessage);

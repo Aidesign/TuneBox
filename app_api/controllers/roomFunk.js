@@ -164,6 +164,43 @@ module.exports.updateVideo = function(req, res) {
 	});
 };
 
+module.exports.togglePlaylist = function(req, res) {
+	if (!req.params.roomid) {
+		sendJSONresponse(res, 406, {
+			message: 'Invalid request'
+		});
+		return;
+	}
+
+	Room.findOne({
+		_id: req.params.roomid
+	}, function(err, room) {
+		if (err) {
+			sendJSONresponse(res, 500, err);
+		} else {
+			if (room.playlist){
+				room.playlist = false;
+			} else {
+				room.playlist = true;
+			}
+			room.save(function(err) {
+				if (!err) {
+					sendJSONresponse(res, 200, room);
+				} else if (err.code == 11000) {
+					sendJSONresponse(res, 406, {
+						message: 'Invalid email'
+					});
+				} else {
+					sendJSONresponse(res, 406, {
+						message: err
+					});
+				}
+			});
+		}
+	});
+};
+
+
 module.exports.editRoom = function(req, res) {
 	if (!req.body.roomName || !req.body.description || !req.body.tags) {
 		sendJSONresponse(res, 400, {

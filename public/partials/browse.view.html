@@ -2,7 +2,7 @@
 	
 	<div class="row-fluid">
 
-		<nav class="ad-column col-md-2 bs-docs-sidebar">
+		<nav class="col-md-2 bs-docs-sidebar">
 			<ul class="nav nav-stacked fixed sidebar-left">
 				<li class="small-margin-left">
 					<div class="add-template-div">
@@ -53,7 +53,7 @@
 					<div ng-show="publicRoom" ng-repeat='room in publicRooms' class="inline-block room-details">
 						<a href ng-click="goToRoom(room._id)">
 							<img src="images/thumbnail.jpg" class="room_thumbnail"><br>
-							<span class="room-name-link">{{room.description}}</span>
+							<span class="room-name-link">{{room.description}}</span> 
 						<br>
 						<span class="room-tag-text" ng-repeat='tag in room.tags'> {{tag}}</span>
 						<br>
