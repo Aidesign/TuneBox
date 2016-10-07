@@ -5,7 +5,15 @@
 		<nav class="col-md-2 bs-docs-sidebar">
 			<ul class="nav nav-stacked fixed sidebar-left">
 				<li class="small-margin-left">
-					<span>Place some ads here</span>
+					<div class="add-template-div">
+						<img src="images/add_template_white.jpg" alt="add_template">
+					</div>
+					<div class="add-template-div">
+						<img src="images/add_template_white.jpg" alt="add_template">
+					</div>
+					<div class="add-template-div">
+						<img src="images/add_template_white.jpg" alt="add_template">
+					</div>
 				</li>
 					<!--<li class="small-margin-left">
 						<span>Place some ads here</span>
@@ -29,8 +37,6 @@
 						<!--<a href="/#/room/{{room._id}}"> {{room.roomName}} - {{room.description}}</a> -->
 						
 						<!--<img ng-src="data:image/png;base64, {{ room.thumbnail }}" class="room_thumbnail">-->
-						<br>
-
 						<a href ng-click="goToRoom(room._id)">
 							<img src="images/thumbnail.jpg" class="room_thumbnail"><br>
 							<span class="room-name-link">{{room.description}}</span>
@@ -45,9 +51,9 @@
 			<div class="row-fluid">
 				<div class=col-md-12>
 					<div ng-show="publicRoom" ng-repeat='room in publicRooms' class="inline-block room-details">
-						<img src="images/thumbnail_2.jpg" class="room_thumbnail"> 
-						<br>
-						<a class="room-name-link" href ng-click="goToRoom(room._id)"> {{room.description}}</a>
+						<a href ng-click="goToRoom(room._id)">
+							<img src="images/thumbnail.jpg" class="room_thumbnail"><br>
+							<span class="room-name-link">{{room.description}}</span> 
 						<br>
 						<span class="room-tag-text" ng-repeat='tag in room.tags'> {{tag}}</span>
 						<br>

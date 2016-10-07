@@ -73,6 +73,12 @@
 			});
 		}
 
+		var togglePlaylist = function(_id){
+			return $http.put('/api/togglePlaylist/'+_id).success(function(data){
+
+			});
+		}
+
 		return {
 			createRoom : createRoom,
 			getUserRooms: getUserRooms,
@@ -82,7 +88,8 @@
 			getMessages: getMessages,
 			changeVideo: changeVideo,
 			editRoom: editRoom,
-			filterDublicateTags: filterDublicateTags
+			filterDublicateTags: filterDublicateTags,
+			togglePlaylist: togglePlaylist
 		};
 	}
 })();

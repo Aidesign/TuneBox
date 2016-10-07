@@ -77,6 +77,10 @@
             return youtube;
         }
 
+        this.launchPlaylist = function(playlist){
+            console.log(playlist);
+        }
+
         this.listResults = function(data, append) {
             if (!append) {
               results.length = 0;

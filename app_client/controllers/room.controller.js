@@ -4,7 +4,7 @@
 		.controller("roomCtrl", roomCtrl);
 
 	roomCtrl.$inject = ['$scope', 'authentication', '$location', '$routeParams', 'roomService',
-		'$http', '$log', 'youtubeService', '$window', 'profileService'
+		'$http', '$log', 'youtubeService', '$window', '$sce', 'profileService'
 	];
 
 	function roomCtrl($scope, authentication, $location,
@@ -14,7 +14,7 @@
 			'#ff8000', '#196619', '#ff0080', '#00ff99', '#cc66ff', '#ffff00'
 		]
 
-		$scope.selectedIndex = -1; 
+		$scope.selectedIndex = -1;
 
 		$scope.dynamicPopover = {
 			templateUrl: 'partials/chatSettingsPopoverTemplate.html',
@@ -110,9 +110,18 @@
 
 		}
 
+
 		function getMessages() {
 			roomService.getMessages($routeParams.roomid).success(function(data) {
 				$scope.messages = data;
+			});
+		}
+
+		function updateRoom() {
+			roomService.getRoom($routeParams.roomid).success(function(data) {
+				console.log(data);
+				$scope.room = data;
+				console.log($scope.room.roomName);
 			});
 		}
 
@@ -330,6 +339,42 @@
 			}
 		};
 
+		$scope.togglePlaylist = function() {
+			roomService.togglePlaylist($routeParams.roomid).success(function(data) {
+				console.log(data);
+				$scope.room = data;
+				if (data.playlist) {
+					var results = [];
+					if (!data.playlistId) {
+						console.log("Please set a playlist");
+					} else {
+						$http.get('https://www.googleapis.com/youtube/v3/playlistItems', {
+								params: {
+									key: 'AIzaSyBJmqwVRUJUXd2QZD1agSvI0B5DzYbiKuc',
+									type: 'playlist',
+									maxResults: '50',
+									part: 'snippet',
+									playlistId: data.playlistId
+								}
+							})
+							.success(function(data) {
+								if (data.items.length === 0) {
+									console.log("No results");
+									return;
+								}
+								console.log(data);
+
+							})
+							.error(function() {
+								$log.info('Search error');
+							});
+					}
+
+				} else {
+					console.log("Toggled off");
+				}
+			});
+		}
 		$scope.getMessageColor = function(val, $index) {
 			console.log("Chat color changed to " + val);
 			messageColor = val;
