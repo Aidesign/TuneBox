@@ -97,9 +97,18 @@
 
 		}
 
+
 		function getMessages() {
 			roomService.getMessages($routeParams.roomid).success(function(data) {
 				$scope.messages = data;
+			});
+		}
+
+		function updateRoom() {
+			roomService.getRoom($routeParams.roomid).success(function(data) {
+				console.log(data);
+				$scope.room = data;
+				console.log($scope.room.roomName);
 			});
 		}
 
@@ -278,6 +287,43 @@
 				return false;
 			}
 		};
+
+		$scope.togglePlaylist = function() {
+			roomService.togglePlaylist($routeParams.roomid).success(function(data) {
+				console.log(data);
+				$scope.room = data;
+				if (data.playlist) {
+					var results = [];
+					if (!data.playlistId) {
+						console.log("Please set a playlist");
+					} else {
+						$http.get('https://www.googleapis.com/youtube/v3/playlistItems', {
+								params: {
+									key: 'AIzaSyBJmqwVRUJUXd2QZD1agSvI0B5DzYbiKuc',
+									type: 'playlist',
+									maxResults: '50',
+									part: 'snippet',
+									playlistId: data.playlistId
+								}
+							})
+							.success(function(data) {
+								if (data.items.length === 0) {
+									console.log("No results");
+									return;
+								}
+								console.log(data);
+
+							})
+							.error(function() {
+								$log.info('Search error');
+							});
+					}
+
+				} else {
+					console.log("Toggled off");
+				}
+			});
+		}
 
 	}
 
