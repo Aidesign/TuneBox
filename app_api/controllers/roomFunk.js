@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var Room = mongoose.model('Room');
 
+
 var sendJSONresponse = function(res, status, content) {
 	res.status(status);
 	res.json(content);
@@ -94,19 +95,20 @@ module.exports.createRoom = function(req, res) {
 	room.description = req.body.description;
 	room.admin = req.body.admin;
 	room.tags = req.body.tags;
-
-	//room.thumbnail = req.body.thumbnail;
-	//fs test
-	var img = fs.readFileSync("./public/uploads/absolutely_ebin.png");
-	var encImg = new Buffer(img).toString('base64');
+	room.thumbnail = req.body.thumbnail;
+	
+	// with fs
+	//var img = fs.readFileSync("./public/uploads/" + fileName);
+	//var encImg = new Buffer(img).toString('base64');
+	//console.log("encImg as string is: " + encImg);
 	/*
-	var thumbnail = {name: "ebin.png",
+	var thumbnail = {name: "thumb.jpg",
 					img: encImg,
-					contentType: "image/png"
+					contentType: "image/jpg"
 				};
 	*/
 
-	room.thumbnail = encImg;
+	//room.thumbnail = encImg;
 
 	if (req.body.userLimit) {
 		room.userLimit = req.body.userLimit;

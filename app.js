@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var uglifyJs = require("uglify-js");
 var fs = require('fs');
+var multiparty = require('multiparty');
+var multipart = require('connect-multiparty');
 
 require('./app_api/models/db');
 require('./app_api/config/passport'); 
@@ -40,7 +42,8 @@ var appClientFiles = [
   'app_client/controllers/room.controller.js',
   'app_client/controllers/editRoom.controller.js',
   'app_client/services/checkLogin.service.js',
-  'app_client/controllers/room.controller.js'
+  'app_client/controllers/room.controller.js',
+  'app_client/controllers/upload.controller.js'
 ];
 var uglified = uglifyJs.minify(appClientFiles, {
   compress: false
@@ -61,6 +64,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(multipart({ uploadDir: 'public/uploads' }));
 
 app.use(passport.initialize());
 
