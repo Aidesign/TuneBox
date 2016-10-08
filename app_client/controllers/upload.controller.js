@@ -7,12 +7,12 @@
 
     function uploadCtrl($scope, Upload, $timeout) {
         $scope.upload = function (dataUrl, name) {
-
-            console.log(name);
+            //console.log(name);
+            //console.log(dataUrl);
+            $scope.room.thumbnail = dataUrl;
             
             Upload.upload({
                 url: 'api/uploads',
-                //url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
                 data: {
                     file: Upload.dataUrltoBlob(dataUrl, name)
                 },

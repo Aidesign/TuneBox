@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var Room = mongoose.model('Room');
 
+
 var sendJSONresponse = function(res, status, content) {
 	res.status(status);
 	res.json(content);
@@ -94,11 +95,12 @@ module.exports.createRoom = function(req, res) {
 	room.description = req.body.description;
 	room.admin = req.body.admin;
 	room.tags = req.body.tags;
-
-	//room.thumbnail = req.body.thumbnail;
+	room.thumbnail = req.body.thumbnail;
+	
 	// with fs
-	//var img = fs.readFileSync("./public/images/thumbnail.jpg");
+	//var img = fs.readFileSync("./public/uploads/" + fileName);
 	//var encImg = new Buffer(img).toString('base64');
+	//console.log("encImg as string is: " + encImg);
 	/*
 	var thumbnail = {name: "thumb.jpg",
 					img: encImg,
