@@ -10,6 +10,9 @@
     "npm": "~2.15.9"
   },
   "dependencies": {
+    "angular-animate": "^1.5.8",
+    "angular-sanitize": "^1.5.8",
+    "angular-ui-bootstrap": "^2.1.4",
     "body-parser": "~1.15.1",
     "connect-multiparty": "^2.0.0",
     "cookie-parser": "~1.4.3",

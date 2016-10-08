@@ -19,6 +19,10 @@
 			}).error(function(res) {
 				$scope.error = res.message;
 			});
+
+			$scope.hideError = function() {
+				$scope.error = '';
+			}
 		}
 	}
 })();

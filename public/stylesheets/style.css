@@ -58,7 +58,7 @@ nav {
 }
 
 .sidebar-left {
-	background-color: #ffd480;
+	background-color: #ffe6cc;
 	height: 100%;
 	top: 0;
 	left: 0;
@@ -67,7 +67,7 @@ nav {
 }
 
 .sidebar-right {
-	background-color: #ffd480;
+	background-color: #ffe6cc;
 	height: 100%;
 	top: 0;
 	right: 0;
@@ -76,3 +76,12 @@ nav {
 }
 
 .hoverEffect { cursor: pointer; }
+
+.add-template-div {
+	width: 15em;
+	height: 18em;
+	/*background-color: #fff;*/
+	margin-bottom: 2em;
+	margin-left: 5%;
+	margin-top: 5%;
+}

@@ -20,11 +20,12 @@ router.post('/login', ctrlAuth.login);
 
 // Rooms
 router.get('/rooms', roomFunctions.getPublicRooms);
-router.get('/rooms/:userMail', roomFunctions.getUserRooms);
+router.get('/rooms/:userid', roomFunctions.getUserRooms);
 router.post('/createRoom', roomFunctions.createRoom);
 router.get('/room/:roomid/', roomFunctions.getRoom);
 router.put('/updateVideo/:roomid/', roomFunctions.updateVideo);
 router.put('/room/:roomId', roomFunctions.editRoom);
+router.put('/togglePlaylist/:roomid', roomFunctions.togglePlaylist);
 
 // Message
 router.post('/saveMessage', messageControls.saveMessage);

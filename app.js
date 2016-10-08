@@ -10,6 +10,9 @@ var uglifyJs = require("uglify-js");
 var fs = require('fs');
 var multiparty = require('multiparty');
 var multipart = require('connect-multiparty');
+/*require("angular-animate");
+require("angular-sanitize");
+require("angular-ui-bootstrap");*/
 
 require('./app_api/models/db');
 require('./app_api/config/passport'); 

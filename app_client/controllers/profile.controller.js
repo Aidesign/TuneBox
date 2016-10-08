@@ -3,9 +3,9 @@
 		.module('TuneBox')
 		.controller('profileCtrl', profileCtrl);
 
-	profileCtrl.$inject = ['$scope', 'authentication', '$location', 'profileService', '$timeout'];
+	profileCtrl.$inject = ['$scope', 'authentication', '$location', 'profileService', '$timeout', '$window'];
 
-	function profileCtrl($scope, authentication, $location, profileService, $timeout) {
+	function profileCtrl($scope, authentication, $location, profileService, $timeout, $window) {
 		if (!authentication.isLoggedIn()) $location.path('/');
 
 		$scope.user = authentication.getUserObject();
@@ -20,25 +20,16 @@
 		}, true);
 
 		// scope functions
-		$scope.edit = function(form) {
-			hideAndResetForms();
-			switch(form) {
-				case 'personalInfo':
-					$scope.editPersonalInfo = true;
-					break;
-
-				case 'organizationInfo':
-					$scope.editOrganizationInfo = true;
-					break;
-			}
+		$scope.editProfile = function() {
+			$scope.editInfo = true;
 		}
 
 		$scope.save = function(form) {
 			profileService.saveProfile($scope.user).success(function(data) {
 				authentication.saveToken(data.token);
 				$scope.showSuccess = true;
-				hideAndResetForms();
-				$timeout(function() { $scope.showSuccess= false; }, 4000);
+				hideAndResetForm();
+				$timeout(function() { $scope.showSuccess= false; }, 3000);
 			}).error(function(err) {
 				$scope.showError = true;
 				$scope.error = err.message;
@@ -46,7 +37,7 @@
 		}
 
 		$scope.cancel = function() {
-			hideAndResetForms();
+			hideAndResetForm();
 		}
 
 		$scope.hideMessages = function() {
@@ -54,14 +45,17 @@
 			$scope.showSuccess = false;
 		}
 
+		$scope.getPremium = function() {
+			$window.alert('This is a placeholder (The feature will be implemented later)');
+		}
+
 		// other functions
-		var hideAndResetForms = function() {
+		var hideAndResetForm = function() {
 			$scope.showError = false;
-			$scope.editPersonalInfo = false;
-			$scope.editOrganizationInfo = false;
 			$scope.edited = false;
+			$scope.editInfo = false;
 			$scope.user = authentication.getUserObject();
 			$scope.original = angular.copy(authentication.getUserObject());
-		}	
+		}
 	}
 })();
