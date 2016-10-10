@@ -25,7 +25,7 @@
 			$location.path("/room/" + _id);
 			setTimeout(function() {
 				$window.location.reload();
-			}, 100);
+			}, 1000);
 		}
 
 		$scope.showPublicRooms = function() {
