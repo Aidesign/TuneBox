@@ -1,7 +1,7 @@
 (function() {
     angular
         .module('TuneBox')
-        .run(function() {
+        /*.run(function() {
             var tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
             var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -9,13 +9,18 @@
         })
         .config(['$httpProvider', function($httpProvider) {
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
-        }])
+        }])*/
         .service('youtubeService', youtubeService);
         
     youtubeService.$inject = ['$window', '$rootScope', '$log'];
 
     function youtubeService($window, $rootScope, $log) {
         var service = this;
+
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
         var youtube = {
             ready: false,
