@@ -310,6 +310,13 @@
 			$scope.video_button = false;
 		}
 
+		$scope.onEnterKeyPress = function(event) {
+			var keyCode = event.which || event.keyCode;
+			if(keyCode == 13) {
+				$scope.sendMessage();
+			}
+		}
+
 		$scope.sendMessage = function() {
 			if ($scope.message.message == null) {
 				console.log("No message");

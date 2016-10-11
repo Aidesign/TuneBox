@@ -12,6 +12,7 @@
 
 		$scope.error = '';
 
+		// scope functions
 		$scope.login = function() {
 			authentication.login($scope.user).success(function(res) {
 				checkLogin.showLoginUI();
@@ -19,10 +20,15 @@
 			}).error(function(res) {
 				$scope.error = res.message;
 			});
+		}
 
-			$scope.hideError = function() {
-				$scope.error = '';
-			}
+		$scope.hideError = function() {
+			$scope.error = '';
+		}
+
+		$scope.onEnterKeyPress = function(event) {
+			var keyCode = event.which || event.keyCode;
+			if (keyCode == 13) $scope.login();
 		}
 	}
 })();
