@@ -48,7 +48,7 @@
                 console.log('Ready');
                 service.bindPlayer('placeholder');
                 service.loadPlayer();
-                $rootScope.$apply();
+                $rootScope.$evalAsync();
             } else {
                 console.log('Not ready');
             }
