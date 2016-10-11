@@ -40,7 +40,7 @@
 							<!-- <img src="images/thumbnail.jpg" class="room_thumbnail"> -->
 							<img ng-src="{{ room.thumbnail }}" class="room_thumbnail">
 							<br>
-							<span class="room-name-link">{{room.description}}</span>
+							<span class="room-name-link">{{room.roomName}}</span>
 						</a>
 						<a href="/#/room/edit/{{room._id}}">EDIT</a>
 						<br>
@@ -55,7 +55,7 @@
 					<div ng-show="publicRoom" ng-repeat='room in publicRooms' class="inline-block room-details">
 						<a href ng-click="goToRoom(room._id)">
 							<img ng-src="{{ room.thumbnail }}" class="room_thumbnail"><br>
-							<span class="room-name-link">{{room.description}}</span>
+							<span class="room-name-link">{{room.roomName}}</span>
 						</a> 
 						<br>
 						<span class="room-tag-text" ng-repeat='tag in room.tags'> {{tag}}</span>
