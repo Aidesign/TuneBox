@@ -50,6 +50,7 @@
                 service.bindPlayer('placeholder');
                 service.loadPlayer();
                 $timeout(function() {
+                        $log.info("TIMEOUT");
                         $rootScope.$apply();
                     }, 1000);
                     //return true;
