@@ -9,15 +9,20 @@
 		if (authentication.isLoggedIn()) {
 			$location.path('/');
 		}
+		$scope.error = '';
 
+		// scope functions
 		$scope.register = function() {
 			authentication.register($scope.user).success(function(res) {
 				checkLogin.showLoginUI();
 				$location.path('/');
 			}).error(function(res) {
-				$scope.showError = true;
 				$scope.error = res.message;
 			});
+		}
+
+		$scope.hideMessages = function() {
+			$scope.error = '';
 		}
 	}
 })();

@@ -2,7 +2,7 @@
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <h1>Register</h1>
-        <p>{{error}}</p>
+        <div ng-show="error != ''" class="alert alert-danger"><strong>Error: </strong>{{error}}. <span class="glyphicon glyphicon-remove hoverEffect" aria-hidden="true" ng-click="hideMessages()"></span></div>
         <form name="registerForm">
             <div class="form-group required">
                 <label class="control-label">Email</label>
@@ -16,7 +16,7 @@
                 <label class="control-label">Password</label>
                 <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="2"></input>
 
-                <div role="alert"><span class="error" ng-show="registerForm.password.$error.minlength">Too short!</span></div>
+                <div role="alert" class="alert alert-danger" ng-show="registerForm.password.$error.minlength"><span class="error" >Too short!</span></div>
             </div>
             <p>Optional</p>
             <div class="form-group">

@@ -33,6 +33,7 @@
 				hideAndResetForm();
 				$timeout(function() { $scope.showSuccess= false; }, 3000);
 			}).error(function(err) {
+				$scope.showSuccess = false;
 				$scope.showError = true;
 				$scope.error = err.message;
 			});

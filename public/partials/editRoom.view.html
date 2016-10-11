@@ -2,25 +2,25 @@
 	<h3>Edit room</h3>
 
 	<div ng-show="showError" class="alert alert-danger"><strong>Error: </strong>{{error}}. <span class="glyphicon glyphicon-remove hoverEffect" aria-hidden="true" ng-click="hideMessages()"></span></div>
-	<div ng-show="showSuccess" class="alert alert-success">Changes saved! <span class="glyphicon glyphicon-remove hoverEffect" aria-hidden="true" ng-click="hideMessages()"></span></div>
+	<div ng-show="showSuccess" class="alert alert-success">Changes saved!<span class="glyphicon glyphicon-remove hoverEffect" aria-hidden="true" ng-click="hideMessages()"></span></div>
 
-	<div class="form-group">
-		<label for="roomName">Room name:</label>
+	<div class="form-group required">
+		<label class="control-label" for="roomName">Room name</label>
 		<input ng-model="room.roomName" type="text" class="form-control" id="roomName">
 	</div>
 
-	<div class="form-group">
-		<label for="desc">Description:</label>
-		<textarea ng-model="room.description" type="textarea" class="form-control" id="desc"></textarea>
+	<div class="form-group required">
+		<label class="control-label">Description</label>
+		<textarea ng-model="room.description" type="textarea" class="form-control"></textarea>
 	</div>
 
 	<div class="form-group">
-		<label>Tags:</label>
+		<label>Tags</label>
 		<textarea ng-list="," class="form-control" ng-model=room.tags></textarea>
 	</div>
 
 	<div class="form-group">
-		<label>Playlist ID:</label>
+		<label>Playlist ID</label>
 		<input class="form-control" ng-model=room.playlistId></textarea>
 	</div>
 
