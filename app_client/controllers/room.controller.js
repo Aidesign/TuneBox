@@ -4,11 +4,11 @@
 		.controller("roomCtrl", roomCtrl);
 
 	roomCtrl.$inject = ['$scope', 'authentication', '$location', '$routeParams', 'roomService',
-		'$http', '$log', 'youtubeService', '$window', '$sce', 'profileService'
+		'$http', '$log', 'youtubeService', '$window', '$sce', 'profileService', '$timeout'
 	];
 
 	function roomCtrl($scope, authentication, $location,
-		$routeParams, roomService, $http, $log, youtubeService, $window, $sce, profileService) {
+		$routeParams, roomService, $http, $log, youtubeService, $window, $sce, profileService, $timeout) {
 
 		$scope.colorCollection = ['#ff0000', '#0066ff', '#ff9900', '#990099',
 			'#ff8000', '#196619', '#ff0080', '#00ff99', '#cc66ff', '#ffff00'
@@ -51,10 +51,10 @@
 		});
 
 		youtubeService.secondRun();
-	
+
 		$window.onPlayerReady = function() {
-			console.log('ONPLAYERREADY '+$routeParams.roomid);
-			init();	
+			console.log('ONPLAYERREADY ' + $routeParams.roomid);
+			init();
 			var vRoom;
 			roomService.getRoom($routeParams.roomid).success(function(data) {
 				console.log(data);
@@ -72,6 +72,12 @@
 						$scope.isAdmin = false;
 					}
 				});
+				$timeout(function() {
+					$log.info("TIMEOUT");
+					$scope.$apply();
+				}, 1000);
+				//return true;
+
 				launchVideo(vRoom.currentVideo, true);
 				getMessages();
 

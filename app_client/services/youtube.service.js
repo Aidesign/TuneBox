@@ -41,7 +41,7 @@
             youtube.ready = true;
             service.bindPlayer('placeholder');
             service.loadPlayer();
-            $rootScope.$apply();
+            //$rootScope.$apply();
         };
 
         this.secondRun = function() {
@@ -49,10 +49,10 @@
                 console.log('Ready');
                 service.bindPlayer('placeholder');
                 service.loadPlayer();
-                $timeout(function() {
+                /*$timeout(function() {
                         $log.info("TIMEOUT");
                         $rootScope.$apply();
-                    }, 1000);
+                    }, 1000);*/
                     //return true;
             } else {
                 console.log('Not ready');
