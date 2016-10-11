@@ -48,7 +48,7 @@
 
 
 		$window.onPlayerReady = function() {
-			console.log($routeParams.roomid);
+			console.log('ONPLAYERREADY '+$routeParams.roomid);
 			var vRoom;
 			roomService.getRoom($routeParams.roomid).success(function(data) {
 				console.log(data);
