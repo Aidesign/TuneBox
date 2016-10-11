@@ -39,6 +39,9 @@ var userSchema = new mongoose.Schema({
 	tags: {
 		type: [String]
 	},
+	color: {
+		type: String
+	},
 	hash: String,
 	salt: String
 });
@@ -67,6 +70,7 @@ userSchema.methods.generateJwt = function() {
 		publicLimit: this.publicLimit,
 		joined: this.joined,
 		tags: this.tags,
+		color: this.color,
 		exp: parseInt(expiry.getTime() / 1000),
 	}, process.env.JWT_SECRET);
 };

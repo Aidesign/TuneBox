@@ -4,17 +4,24 @@
 		.controller("roomCtrl", roomCtrl);
 
 	roomCtrl.$inject = ['$scope', 'authentication', '$location', '$routeParams', 'roomService',
-		'$http', '$log', 'youtubeService', '$window', '$sce', 'profileService'
+		'$http', '$log', 'youtubeService', '$window', '$sce', 'profileService', '$timeout'
 	];
 
 	function roomCtrl($scope, authentication, $location,
-		$routeParams, roomService, $http, $log, youtubeService, $window, $sce, profileService) {
+		$routeParams, roomService, $http, $log, youtubeService, $window, $sce, profileService, $timeout) {
 
 		$scope.colorCollection = ['#ff0000', '#0066ff', '#ff9900', '#990099',
 			'#ff8000', '#196619', '#ff0080', '#00ff99', '#cc66ff', '#ffff00'
 		]
 
 		$scope.selectedIndex = -1;
+		$scope.userColor;
+		var user = authentication.getUserObject();
+		var userProfile = profileService.getProfile(user._id).success(function(data) {
+			$scope.userColor = data.color;
+			console.log("User color is:" + $scope.userColor);
+		});
+
 
 		$scope.dynamicPopover = {
 			templateUrl: 'partials/chatSettingsPopoverTemplate.html',
@@ -43,12 +50,11 @@
 			}
 		});
 
-		init();
-
-
+		youtubeService.secondRun();
 
 		$window.onPlayerReady = function() {
-			console.log($routeParams.roomid);
+			console.log('ONPLAYERREADY ' + $routeParams.roomid);
+			init();
 			var vRoom;
 			roomService.getRoom($routeParams.roomid).success(function(data) {
 				console.log(data);
@@ -66,6 +72,8 @@
 						$scope.isAdmin = false;
 					}
 				});
+				//return true;
+
 				launchVideo(vRoom.currentVideo, true);
 				getMessages();
 
@@ -126,9 +134,15 @@
 		}
 
 		function changeDBVideo(video) {
-			roomService.changeVideo($routeParams.roomid, video).success(function(data) {
-				sukka.emit('changeVideo', $routeParams.roomid);
-			});
+			if ($scope.isAdmin) {
+				console.log("Change");
+				roomService.changeVideo($routeParams.roomid, video).success(function(data) {
+
+					sukka.emit('changeVideo', $routeParams.roomid);
+				});
+			} else {
+				console.log("Nada");
+			}
 		}
 
 		function changePlaying() {
@@ -152,44 +166,7 @@
 		}
 
 		function randomizedVideo() {
-			var ranNum = Math.floor((Math.random() * $scope.room.tags.length) + 1);
-			var searchString = $scope.room.tags[ranNum - 1];
-			console.log(searchString);
-
-			var pubAfter = new Date();
-			var currentYear = pubAfter.getFullYear();
-			pubAfter.setFullYear(currentYear - 2);
-			console.log(pubAfter);
-
-			var results = [];
-
-			$http.get('https://www.googleapis.com/youtube/v3/search', {
-					params: {
-						key: 'AIzaSyBJmqwVRUJUXd2QZD1agSvI0B5DzYbiKuc',
-						type: 'video',
-						publishedAfter: pubAfter,
-						maxResults: '50',
-						part: 'id,snippet',
-						q: "'" + searchString + "' song -'the best' -'vs'"
-					}
-				})
-				.success(function(data) {
-					if (data.items.length === 0) {
-						console.log("No results");
-						return;
-					}
-					console.log(data);
-					var videoNum = Math.floor((Math.random() * data.items.length) + 0);
-					var video = {};
-					video.id = data.items[videoNum].id.videoId;
-					video.title = data.items[videoNum].snippet.title;
-					$scope.launch(video, true);
-
-				})
-				.error(function() {
-					$log.info('Search error');
-				});
-			if (authentication.getUserObject()._id == $scope.admin._id) {
+			if ($scope.isAdmin) {
 
 				var ranNum = Math.floor((Math.random() * $scope.room.tags.length) + 1);
 				var searchString = $scope.room.tags[ranNum - 1];
@@ -198,7 +175,6 @@
 				var pubAfter = new Date();
 				var currentYear = pubAfter.getFullYear();
 				pubAfter.setFullYear(currentYear - 2);
-				console.log(pubAfter);
 
 				var results = [];
 
@@ -228,10 +204,8 @@
 					.error(function() {
 						$log.info('Search error');
 					});
-			} else {
-				console.log("BACK OFF YO");
+				
 			}
-
 		}
 
 		$scope.launch = function(video, archive) {
@@ -324,7 +298,6 @@
 				//console.log($scope.message.message);
 				$scope.message.sender = authentication.getUserObject().name;
 				$scope.message.room = $routeParams.roomid;
-				$scope.message.color = messageColor;
 				//console.log($scope.message);
 				roomService.saveMessage($scope.message).success(function(data) {
 					console.log(data);
@@ -387,6 +360,20 @@
 			messageColor = val;
 			$scope.selectedIndex = $index;
 			console.log("messageColor = " + messageColor);
+			changeUserColor();
+			userProfile = profileService.getProfile(user._id).success(function(data) {
+				$scope.userColor = data.color;
+				console.log("User color is:" + $scope.userColor);
+			});
+		}
+
+		function changeUserColor() {
+			user.color = messageColor;
+			profileService.saveUserColor(user).success(function(data) {
+
+			}).error(function(err) {
+				console.log(err.message);
+			});
 		}
 
 	}

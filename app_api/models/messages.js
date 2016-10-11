@@ -9,9 +9,6 @@ var messageSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	color: {
-		type: String
-	},
 	time: {
 		type: Date,
 		required: true

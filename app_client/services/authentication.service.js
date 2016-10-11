@@ -62,7 +62,8 @@
 				premium: token.premium,
 				privateLimit: token.privateLimit,
 				publicLimit: token.publicLimit,
-				tags: token.tags
+				tags: token.tags,
+				color: token.color
 			}
 			return user;
 		}

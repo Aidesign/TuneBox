@@ -17,9 +17,15 @@
 			});
 		}
 
+		var saveUserColor = function(user){
+			var url = '/api/users/color/' + user._id;
+			return $http.put(url, user);
+		}
+
 		return {
 			saveProfile: saveProfile,
-			getProfile: getProfile
+			getProfile: getProfile,
+			saveUserColor: saveUserColor
 		};	
 	}
 })();
