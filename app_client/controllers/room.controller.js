@@ -50,7 +50,7 @@
 			}
 		});
 
-		var youtubeService.secondRun();
+		youtubeService.secondRun();
 	
 		$window.onPlayerReady = function() {
 			console.log('ONPLAYERREADY '+$routeParams.roomid);
