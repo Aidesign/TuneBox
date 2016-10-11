@@ -47,9 +47,12 @@
         this.secondRun = function() {
             if (youtube.ready) {
                 console.log('Ready');
-                service.bindPlayer('placeholder');
+                /*service.bindPlayer('placeholder');
                 service.loadPlayer();
-                $rootScope.$apply();
+                $timeout(function (){
+                    $rootScope.$apply();
+                }, 100);*/
+                $window.location.reload();
 
             } else {
                 console.log('Not ready');
