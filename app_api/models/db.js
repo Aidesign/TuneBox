@@ -1,7 +1,11 @@
 var mongoose = require( 'mongoose' );
 
 // Change DB Uri!!
-var dbURI = 'mongodb://localhost/TuneBox';
+if(process.env.NODE_ENV === 'production') {
+	var dbURI = process.env.MONGOLAB_URI;
+} else {
+	var dbURI = 'mongodb://localhost/TuneBox';
+}
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', function () {

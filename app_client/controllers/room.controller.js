@@ -15,6 +15,13 @@
 		]
 
 		$scope.selectedIndex = -1;
+		$scope.userColor;
+		var user = authentication.getUserObject();
+		var userProfile = profileService.getProfile(user._id).success(function(data) {
+			$scope.userColor = data.color;
+			console.log("User color is:" + $scope.userColor);
+		});
+		console.log();
 
 		$scope.dynamicPopover = {
 			templateUrl: 'partials/chatSettingsPopoverTemplate.html',
@@ -317,7 +324,6 @@
 				//console.log($scope.message.message);
 				$scope.message.sender = authentication.getUserObject().name;
 				$scope.message.room = $routeParams.roomid;
-				$scope.message.color = messageColor;
 				//console.log($scope.message);
 				roomService.saveMessage($scope.message).success(function(data) {
 					console.log(data);
@@ -380,6 +386,20 @@
 			messageColor = val;
 			$scope.selectedIndex = $index;
 			console.log("messageColor = " + messageColor);
+			changeUserColor();
+			userProfile = profileService.getProfile(user._id).success(function(data) {
+				$scope.userColor = data.color;
+				console.log("User color is:" + $scope.userColor);
+			});
+		}
+
+		function changeUserColor() {
+			user.color = messageColor;
+			profileService.saveUserColor(user).success(function(data) {
+
+			}).error(function(err) {
+				console.log(err.message);
+			});
 		}
 
 	}
