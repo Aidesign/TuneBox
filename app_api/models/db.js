@@ -6,6 +6,7 @@ if(process.env.NODE_ENV === 'production') {
 } else {
 	var dbURI = 'mongodb://localhost/TuneBox';
 }
+
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', function () {

@@ -7,11 +7,12 @@
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         })
-        */.config(['$httpProvider', function($httpProvider) {
+        */
+        .config(['$httpProvider', function($httpProvider) {
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
         }])
         .service('youtubeService', youtubeService);
-        
+
     youtubeService.$inject = ['$window', '$rootScope', '$log', '$timeout'];
 
     function youtubeService($window, $rootScope, $log, $timeout) {
@@ -31,7 +32,7 @@
             playerHeight: '100%',
             playerWidth: '100%',
             state: 'stopped'
-            };
+        };
         var results = [];
         var history = [];
 
@@ -43,15 +44,15 @@
             $rootScope.$apply();
         };
 
-        this.secondRun = function(){
-            if (youtube.ready){
+        this.secondRun = function() {
+            if (youtube.ready) {
                 console.log('Ready');
                 service.bindPlayer('placeholder');
                 service.loadPlayer();
-                $timeout(function(){
-                    $rootScope.$apply();          
-                }, 1000)
-                //return true;
+                $timeout(function() {
+                        $rootScope.$apply();
+                    }, 1000);
+                    //return true;
             } else {
                 console.log('Not ready');
                 //return false;
@@ -90,32 +91,32 @@
         };
 
         this.launchPlayer = function(id, title) {
-            console.log("ID:"+id+" TITLE: "+title);
+            console.log("ID:" + id + " TITLE: " + title);
             youtube.player.loadVideoById(id);
             youtube.videoId = id;
             youtube.videoTitle = title;
             return youtube;
         }
 
-        this.launchPlaylist = function(playlist){
+        this.launchPlaylist = function(playlist) {
             console.log(playlist);
         }
 
         this.listResults = function(data, append) {
             if (!append) {
-              results.length = 0;
+                results.length = 0;
             }
             for (var i = data.items.length - 1; i >= 0; i--) {
                 results.push({
-                id: data.items[i].id.videoId,
-                title: data.items[i].snippet.title,
-                description: data.items[i].snippet.description,
-                thumbnail: data.items[i].snippet.thumbnails.default.url,
-                author: data.items[i].snippet.channelTitle
-            });
-          }
-          results.reverse();
-          return results;
+                    id: data.items[i].id.videoId,
+                    title: data.items[i].snippet.title,
+                    description: data.items[i].snippet.description,
+                    thumbnail: data.items[i].snippet.thumbnails.default.url,
+                    author: data.items[i].snippet.channelTitle
+                });
+            }
+            results.reverse();
+            return results;
         }
 
         this.archiveVideo = function(video) {
@@ -138,17 +139,3 @@
     }
 
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
