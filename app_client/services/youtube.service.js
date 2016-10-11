@@ -12,9 +12,9 @@
         }])
         .service('youtubeService', youtubeService);
         
-    youtubeService.$inject = ['$window', '$rootScope', '$log'];
+    youtubeService.$inject = ['$window', '$rootScope', '$log', '$timeout'];
 
-    function youtubeService($window, $rootScope, $log) {
+    function youtubeService($window, $rootScope, $log, $timeout) {
         var service = this;
 
         var tag = document.createElement('script');
@@ -48,10 +48,13 @@
                 console.log('Ready');
                 service.bindPlayer('placeholder');
                 service.loadPlayer();
-                return true;
+                $timeout(function(){
+                    $rootScope.$apply();          
+                }, 1000)
+                //return true;
             } else {
                 console.log('Not ready');
-                return false;
+                //return false;
             }
         };
 
