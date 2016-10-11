@@ -134,9 +134,12 @@
 		}
 
 		function changeDBVideo(video) {
-			roomService.changeVideo($routeParams.roomid, video).success(function(data) {
-				sukka.emit('changeVideo', $routeParams.roomid);
-			});
+			if ($scope.isadmin) {
+				roomService.changeVideo($routeParams.roomid, video).success(function(data) {
+
+					sukka.emit('changeVideo', $routeParams.roomid);
+				});
+			}
 		}
 
 		function changePlaying() {
@@ -160,7 +163,7 @@
 		}
 
 		function randomizedVideo() {
-			if (authentication.getUserObject()._id == $scope.admin._id) {
+			if ($scope.isAdmin) {
 
 
 				var ranNum = Math.floor((Math.random() * $scope.room.tags.length) + 1);
