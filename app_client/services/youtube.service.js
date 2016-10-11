@@ -43,6 +43,17 @@
             $rootScope.$apply();
         };
 
+        this.secondRun = function(){
+            if (youtube.ready){
+                console.log('Ready');
+                service.bindPlayer('placeholder');
+                service.loadPlayer();
+                $rootScope.$apply();
+            } else {
+                console.log('Not ready');
+            }
+        };
+
         this.bindPlayer = function(elementId) {
             $log.info('Binding to ' + elementId);
             youtube.playerId = elementId;
