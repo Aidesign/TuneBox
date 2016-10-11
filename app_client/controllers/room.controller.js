@@ -21,7 +21,7 @@
 			$scope.userColor = data.color;
 			console.log("User color is:" + $scope.userColor);
 		});
-	
+
 
 		$scope.dynamicPopover = {
 			templateUrl: 'partials/chatSettingsPopoverTemplate.html',
@@ -160,44 +160,8 @@
 		}
 
 		function randomizedVideo() {
-			var ranNum = Math.floor((Math.random() * $scope.room.tags.length) + 1);
-			var searchString = $scope.room.tags[ranNum - 1];
-			console.log(searchString);
-
-			var pubAfter = new Date();
-			var currentYear = pubAfter.getFullYear();
-			pubAfter.setFullYear(currentYear - 2);
-			console.log(pubAfter);
-
-			var results = [];
-
-			$http.get('https://www.googleapis.com/youtube/v3/search', {
-					params: {
-						key: 'AIzaSyBJmqwVRUJUXd2QZD1agSvI0B5DzYbiKuc',
-						type: 'video',
-						publishedAfter: pubAfter,
-						maxResults: '50',
-						part: 'id,snippet',
-						q: "'" + searchString + "' song -'the best' -'vs'"
-					}
-				})
-				.success(function(data) {
-					if (data.items.length === 0) {
-						console.log("No results");
-						return;
-					}
-					console.log(data);
-					var videoNum = Math.floor((Math.random() * data.items.length) + 0);
-					var video = {};
-					video.id = data.items[videoNum].id.videoId;
-					video.title = data.items[videoNum].snippet.title;
-					$scope.launch(video, true);
-
-				})
-				.error(function() {
-					$log.info('Search error');
-				});
 			if (authentication.getUserObject()._id == $scope.admin._id) {
+
 
 				var ranNum = Math.floor((Math.random() * $scope.room.tags.length) + 1);
 				var searchString = $scope.room.tags[ranNum - 1];
@@ -236,10 +200,50 @@
 					.error(function() {
 						$log.info('Search error');
 					});
-			} else {
-				console.log("BACK OFF YO");
-			}
+				if (authentication.getUserObject()._id == $scope.admin._id) {
 
+					var ranNum = Math.floor((Math.random() * $scope.room.tags.length) + 1);
+					var searchString = $scope.room.tags[ranNum - 1];
+					console.log(searchString);
+
+					var pubAfter = new Date();
+					var currentYear = pubAfter.getFullYear();
+					pubAfter.setFullYear(currentYear - 2);
+					console.log(pubAfter);
+
+					var results = [];
+
+					$http.get('https://www.googleapis.com/youtube/v3/search', {
+							params: {
+								key: 'AIzaSyBJmqwVRUJUXd2QZD1agSvI0B5DzYbiKuc',
+								type: 'video',
+								publishedAfter: pubAfter,
+								maxResults: '50',
+								part: 'id,snippet',
+								q: "'" + searchString + "' song -'the best' -'vs'"
+							}
+						})
+						.success(function(data) {
+							if (data.items.length === 0) {
+								console.log("No results");
+								return;
+							}
+							console.log(data);
+							var videoNum = Math.floor((Math.random() * data.items.length) + 0);
+							var video = {};
+							video.id = data.items[videoNum].id.videoId;
+							video.title = data.items[videoNum].snippet.title;
+							$scope.launch(video, true);
+
+						})
+						.error(function() {
+							$log.info('Search error');
+						});
+				} else {
+					console.log("BACK OFF YO");
+				}
+
+			}
 		}
 
 		$scope.launch = function(video, archive) {
