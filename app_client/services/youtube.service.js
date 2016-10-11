@@ -7,9 +7,9 @@
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         })
-        .config(['$httpProvider', function($httpProvider) {
+        */.config(['$httpProvider', function($httpProvider) {
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
-        }])*/
+        }])
         .service('youtubeService', youtubeService);
         
     youtubeService.$inject = ['$window', '$rootScope', '$log'];
