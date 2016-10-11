@@ -46,6 +46,7 @@
 		init();
 
 
+		youtubeService.loadPlayer();
 
 		$window.onPlayerReady = function() {
 			console.log($routeParams.roomid);
