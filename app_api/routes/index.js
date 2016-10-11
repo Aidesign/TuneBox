@@ -13,6 +13,7 @@ var ctrlFile = require('../controllers/fileUpload.controller');
 router.get('/users', ctrlUsers.getAllUsers);
 router.get('/users/:id', ctrlUsers.getUser);
 router.put('/users/:id', ctrlUsers.editUser);
+router.put('/users/color/:id', ctrlUsers.changeUserColor);
 
 // Auth
 router.post('/register', ctrlAuth.register);

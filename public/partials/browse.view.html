@@ -41,7 +41,8 @@
 							<img ng-src="{{ room.thumbnail }}" class="room_thumbnail">
 							<br>
 							<span class="room-name-link">{{room.description}}</span>
-						</a><a href="/#/room/edit/{{room._id}}">EDIT</a>
+						</a>
+						<a href="/#/room/edit/{{room._id}}">EDIT</a>
 						<br>
 						<span class="room-tag-text" ng-repeat='tag in room.tags'> {{tag}}</span>
 						<br>

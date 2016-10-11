@@ -63,3 +63,28 @@ module.exports.editUser = function(req, res) {
 		}
 	});
 }
+
+module.exports.changeUserColor = function(req, res) {
+	Users.findOne({ _id: req.params.id }, function(err, user) {
+		if (err) {
+			sendJSONresponse(res, 500, err);
+		} else if (user) {
+			user.color = req.body.color;
+			user.save(function(err) {
+				if(!err) {
+					var token = user.generateJwt();
+					sendJSONresponse(res, 200, {
+						user: user,
+						token: token
+					});
+				} else if (err.code == 11000) {
+					sendJSONresponse(res, 400, { message: 'Invalid email' });
+				} else {
+					sendJSONresponse(res, 500, { message: err });
+				}
+			});
+		} else {
+			sendJSONresponse(res, status, { message: 'No room found.' });
+		}
+	});
+}
