@@ -48,7 +48,6 @@
                 console.log('Ready');
                 service.bindPlayer('placeholder');
                 service.loadPlayer();
-                $rootScope.$evalAsync();
             } else {
                 console.log('Not ready');
             }

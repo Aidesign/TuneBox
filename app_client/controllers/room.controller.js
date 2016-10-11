@@ -43,9 +43,9 @@
 			}
 		});
 
+		youtubeService.secondRun();
 		init();
 
-		youtubeService.secondRun();
 
 		$window.onPlayerReady = function() {
 			console.log($routeParams.roomid);
