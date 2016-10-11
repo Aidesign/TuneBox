@@ -21,7 +21,7 @@
 			$scope.userColor = data.color;
 			console.log("User color is:" + $scope.userColor);
 		});
-		console.log();
+
 
 		$scope.dynamicPopover = {
 			templateUrl: 'partials/chatSettingsPopoverTemplate.html',
@@ -53,34 +53,38 @@
 		youtubeService.secondRun();
 
 		$window.onPlayerReady = function() {
-			console.log('ONPLAYERREADY ' + $routeParams.roomid);
-			init();
-			var vRoom;
-			roomService.getRoom($routeParams.roomid).success(function(data) {
-				console.log(data);
-				vRoom = data;
-				$scope.room = vRoom;
-				console.log($scope.room.roomName);
-				profileService.getProfile(vRoom.admin).success(function(data) {
-					$scope.admin = data;
+			$timeout(function() {
 
-					if (authentication.getUserObject()._id == $scope.room.admin) {
-						console.log("admin");
-						$scope.isAdmin = true;
-					} else {
-						console.log("not admin");
-						$scope.isAdmin = false;
-					}
-				});
-				$timeout(function() {
-					$log.info("TIMEOUT");
+				$log.info("TIMEOUT");
+				console.log('ONPLAYERREADY ' + $routeParams.roomid);
+				init();
+				var vRoom;
+				roomService.getRoom($routeParams.roomid).success(function(data) {
+					console.log(data);
+					vRoom = data;
+					$scope.room = vRoom;
+					console.log($scope.room.roomName);
+					profileService.getProfile(vRoom.admin).success(function(data) {
+						$scope.admin = data;
+
+						if (authentication.getUserObject()._id == $scope.room.admin) {
+							console.log("admin");
+							$scope.isAdmin = true;
+						} else {
+							console.log("not admin");
+							$scope.isAdmin = false;
+						}
+					});
+					
+					getMessages();
+
 					$scope.$apply();
+					launchVideo(vRoom.currentVideo, true);
+					
 				}, 1000);
 				//return true;
 
-				launchVideo(vRoom.currentVideo, true);
-				getMessages();
-
+				
 			});
 
 		};
