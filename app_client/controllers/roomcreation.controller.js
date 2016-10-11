@@ -21,7 +21,11 @@
 			roomService.createRoom($scope.room).success(function(res) {
 				$location.path('/browse');
 			}).error(function(res) {
-				$scope.error = res.message;
+				if (res.message) {
+					$scope.error = res.message;
+				} else {
+					$scope.error = 'Picture was too large';
+				}
 			});
 		}
 
