@@ -36,7 +36,7 @@
 
 		$scope.isAdmin = false;
 
-		var sukka = io('http://localhost:3000/');
+		var sukka = io();
 
 		sukka.on('msg', function(msg) {
 			if (msg === $routeParams.roomid) {
