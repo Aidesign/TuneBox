@@ -29,9 +29,9 @@ module.exports.getUser = function(req, res) {
 }
 
 module.exports.editUser = function(req, res) {
-	if (!req.body.name || !req.body.email || !req.body.homePage || !req.body.organization || !req.body.tags) {
+	if (!req.body.name || !req.body.email) {
 		sendJSONresponse(res, 400, {
-			message: 'All fields are required'
+			message: 'Name and email are required'
 		});
 		return;
 	}
@@ -42,9 +42,25 @@ module.exports.editUser = function(req, res) {
 		} else if (user) {
 			user.name = req.body.name;
 			user.email = req.body.email;
-			user.homePage = req.body.homePage;
-			user.organization = req.body.organization;
-			user.tags = req.body.tags;
+
+			if (req.body.homePage) {
+				user.homePage = req.body.homePage;
+			} else {
+				user.homePage = '';
+			}
+
+			if (req.body.organization) {
+				user.organization = req.body.organization
+			} else {
+				user.organization = '';
+			}
+			
+			if (req.body.tags) {
+				user.tags = req.body.tags;
+			} else {
+				user.tags = [];
+			}
+			
 			user.save(function(err) {
 				if(!err) {
 					var token = user.generateJwt();

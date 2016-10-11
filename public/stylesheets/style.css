@@ -85,3 +85,8 @@ nav {
 	margin-left: 5%;
 	margin-top: 5%;
 }
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}

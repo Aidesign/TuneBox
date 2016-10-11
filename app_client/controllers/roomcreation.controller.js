@@ -9,32 +9,24 @@
 		if (!authentication.isLoggedIn()) {
 			$location.path('/');
 		}
+		$scope.error = '';
 
+		// scope functions
 		$scope.createRoom = function() {
-			
-			var mail = authentication.getUserInfo()._id;
-			/*$scope.room = $scope.room.concat([{
-				admin: userName
-			}]);*/
-			$scope.room.admin = mail;
-
-			console.log($scope.room.userLimit);
-			var tags = $scope.room.tags;
-			var cleanedTags = roomService.filterDublicateTags(tags);
-
-			console.log(cleanedTags);
-
-			$scope.room.tags = cleanedTags;
-
+			if ($scope.room && $scope.room.tags) {
+				$scope.room.admin = authentication.getUserInfo()._id;
+				var tags = roomService.filterDublicateTags($scope.room.tags);
+				$scope.room.tags = tags;
+			}
 			roomService.createRoom($scope.room).success(function(res) {
 				$location.path('/browse');
-
 			}).error(function(res) {
-				console.log(res);
+				$scope.error = res.message;
 			});
 		}
 
+		$scope.hideMessages = function() {
+			$scope.error = '';
+		}
 	}
-
-
 })();

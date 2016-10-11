@@ -3,9 +3,9 @@
 	.module('TuneBox')
 	.controller('navigationCtrl', navigationCtrl);
 
-	navigationCtrl.$inject = ['$scope', 'authentication', 'checkLogin'];
+	navigationCtrl.$inject = ['$scope', 'authentication', 'checkLogin', '$location'];
 
-	function navigationCtrl($scope, authentication, checkLogin) {
+	function navigationCtrl($scope, authentication, checkLogin, $location) {
 
 		if(!authentication.isLoggedIn()){
 			$scope.loginData = checkLogin.getAll();

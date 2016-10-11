@@ -95,7 +95,7 @@ module.exports.createRoom = function(req, res) {
 	room.description = req.body.description;
 	room.admin = req.body.admin;
 	room.tags = req.body.tags;
-	room.thumbnail = req.body.thumbnail;
+	if (req.body.thumbnail) room.thumbnail = req.body.thumbnail;
 	
 	// with fs
 	//var img = fs.readFileSync("./public/uploads/" + fileName);
@@ -122,9 +122,13 @@ module.exports.createRoom = function(req, res) {
 
 	room.save(function(err) {
 		if (err) {
-			sendJSONresponse(res, 400, {
-				"message": err //"Room name already in use, please select another name."
-			});
+			if (err.code == 11000) {
+				sendJSONresponse(res, 400, { "message": 'Room name already in use'});
+			} else {
+				sendJSONresponse(res, 400, {
+					"message": err //"Room name already in use, please select another name."
+				});
+			}
 		} else {
 			sendJSONresponse(res, 200, {
 				"message": ("Created room " + req.body.name)

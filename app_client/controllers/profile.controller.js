@@ -3,9 +3,9 @@
 		.module('TuneBox')
 		.controller('profileCtrl', profileCtrl);
 
-	profileCtrl.$inject = ['$scope', 'authentication', '$location', 'profileService', '$timeout', '$window'];
+	profileCtrl.$inject = ['$scope', 'authentication', '$location', 'profileService', '$timeout', '$window', 'roomService'];
 
-	function profileCtrl($scope, authentication, $location, profileService, $timeout, $window) {
+	function profileCtrl($scope, authentication, $location, profileService, $timeout, $window, roomService) {
 		if (!authentication.isLoggedIn()) $location.path('/');
 
 		$scope.user = authentication.getUserObject();
@@ -25,6 +25,8 @@
 		}
 
 		$scope.save = function(form) {
+			var tags = roomService.filterDublicateTags($scope.user.tags);
+			$scope.user.tags = tags;
 			profileService.saveProfile($scope.user).success(function(data) {
 				authentication.saveToken(data.token);
 				$scope.showSuccess = true;
