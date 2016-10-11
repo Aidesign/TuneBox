@@ -49,9 +49,9 @@
                 console.log('Ready');
                 service.bindPlayer('placeholder');
                 service.loadPlayer();
-                $timeout(function() {
+                /*$timeout(function() {
                         $rootScope.$apply();
-                    }, 1000);
+                    }, 1000);*/
                     //return true;
             } else {
                 console.log('Not ready');
