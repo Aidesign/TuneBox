@@ -134,7 +134,7 @@
 		}
 
 		function changeDBVideo(video) {
-			if ($scope.isadmin) {
+			if ($scope.isAdmin) {
 				console.log("Change");
 				roomService.changeVideo($routeParams.roomid, video).success(function(data) {
 
