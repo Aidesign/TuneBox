@@ -44,11 +44,10 @@
 		});
 
 		youtubeService.secondRun();
-		init();
-
-
+	
 		$window.onPlayerReady = function() {
 			console.log('ONPLAYERREADY '+$routeParams.roomid);
+			init();	
 			var vRoom;
 			roomService.getRoom($routeParams.roomid).success(function(data) {
 				console.log(data);

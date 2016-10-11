@@ -48,8 +48,10 @@
                 console.log('Ready');
                 service.bindPlayer('placeholder');
                 service.loadPlayer();
+                return true;
             } else {
                 console.log('Not ready');
+                return false;
             }
         };
 
